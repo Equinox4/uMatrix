@@ -1,7 +1,7 @@
 {
     "extName": {
         "message": "uMatrix",
-        "description": ""
+        "description": "Le nom de l'extension."
     },
     "extShortDesc": {
         "message": "Pointez-et-cliquez pour interdire/autoriser toute sorte de requêtes effectuées par le navigateur à l'aide d'un tableau de données.",
@@ -9,39 +9,39 @@
     },
     "dashboardPageName": {
         "message": "uMatrix — Tableau de bord",
-        "description": ""
+        "description": "Titre de la fenêtre du tableau de bord."
     },
     "loggerPageName": {
         "message": "uMatrix — Journal",
-        "description": "Title for the logger window"
+        "description": "Titre de la fenêtre de journalisation."
     },
     "settingsPageName": {
         "message": "Paramètres",
-        "description": "a tab in dashboard"
+        "description": "Onglet du tableau de bord."
     },
     "privacyPageName": {
         "message": "Confidentialité",
-        "description": "a tab in dashboard"
+        "description": "Onglet du tableau de bord."
     },
     "statsPageName": {
         "message": "Statistiques",
-        "description": "a tab in dashboard"
+        "description": "Onglet du tableau de bord."
     },
     "userRulesPageName": {
         "message": "Mes règles",
-        "description": "a tab in dashboard"
+        "description": "Onglet du tableau de bord."
     },
     "ubiquitousRulesPageName": {
         "message": "Ressources",
-        "description": "a tab in dashboard"
+        "description": "Onglet du tableau de bord."
     },
     "rawSettingsPageName": {
         "message": "Plus",
-        "description": "a tab in dashboard"
+        "description": "Onglet du tableau de bord."
     },
     "aboutPageName": {
         "message": "À propos",
-        "description": "a tab in dashboard"
+        "description": "Onglet du tableau de bord."
     },
     "allPrettyName": {
         "message": "Tout",
@@ -72,11 +72,11 @@
         "description": "HAS TO FIT IN MATRIX HEADER!"
     },
     "fetchPrettyName": {
-        "message": "Chercher",
+        "message": "XHR",
         "description": "HAS TO FIT IN MATRIX HEADER!"
     },
     "framePrettyName": {
-        "message": "Frame",
+        "message": "Cadre",
         "description": "HAS TO FIT IN MATRIX HEADER!"
     },
     "otherPrettyName": {
@@ -172,15 +172,15 @@
         "description": ""
     },
     "statsPageCookieHeadersFoiled": {
-        "message": "Nombre de <a href='https://fr.wikipedia.org/wiki/Cookie_(informatique)'>Cookies HTTP</a> bloqués : {{count}}",
+        "message": "Nombre de <a href=\"https://fr.wikipedia.org/wiki/Cookie_(informatique)\">Cookies HTTP</a> bloqués : {{count}}",
         "description": ""
     },
     "statsPageRefererHeadersFoiled": {
-        "message": "Nombre de <a href='https://fr.wikipedia.org/wiki/R%C3%A9f%C3%A9rant'>Référants HTTP</a> bloqués : {{count}}",
+        "message": "Nombre de <a href=\"https://fr.wikipedia.org/wiki/R%C3%A9f%C3%A9rant\">Référants HTTP</a> bloqués : {{count}}",
         "description": ""
     },
     "statsPageHyperlinkAuditingFoiled": {
-        "message": "Nombre d'<a href='https://html.spec.whatwg.org/multipage/semantics.html#hyperlink-auditing'>Audits hyperliens</a> bloqués : {{count}}",
+        "message": "Nombre d'<a href=\"https://html.spec.whatwg.org/multipage/semantics.html#hyperlink-auditing\">Audits hyperliens</a> bloqués : {{count}}",
         "description": ""
     },
     "statsPageCookiesRemoved": {
@@ -188,7 +188,7 @@
         "description": ""
     },
     "statsPageLocalStoragesCleared": {
-        "message": "Nombre de <a href='https://fr.wikipedia.org/wiki/Stockage_web_local'>Stockages web locaux</a> effacés : {{count}}",
+        "message": "Nombre de <a href=\"https://fr.wikipedia.org/wiki/Stockage_web_local\">Stockages web locaux</a> effacés : {{count}}",
         "description": ""
     },
     "statsPageBrowserCacheCleared": {
@@ -512,11 +512,11 @@
         "description": "Second part of 'Delete non-blocked session cookies [n] minutes after the last time they have been used'"
     },
     "privacyDeleteNonBlockedSessionCookiesHelp": {
-        "message": "<p><a href='http://www.w3.org/2001/tag/2010/09/ClientSideStorage.html'>Définition W3C</a> : &ldquo;Un cookie de session [...] est effacé quand vous avez terminé la session de navigation. Le cookie de session est stocké dans la mémoire temporaire et n'est pas conservé après la fermeture du navigateur.&rdquo;</p><p>Sauf que cela <a href='https://code.google.com/p/chromium/issues/detail?id=128513'>peut ne pas se produire</a> sur certains navigateurs. De plus, pour certaines personnes, avoir à fermer le navigateur pour nettoyer les cookies de session peut ne pas se révéler suffisant en terme de confidentialité.</p>",
+        "message": "<p><a href=\"http://www.w3.org/2001/tag/2010/09/ClientSideStorage.html\">Définition W3C</a> : &ldquo;Un cookie de session [...] est effacé quand vous avez terminé la session de navigation. Le cookie de session est stocké dans la mémoire temporaire et n'est pas conservé après la fermeture du navigateur.&rdquo;</p><p>Sauf que cela <a href=\"https://code.google.com/p/chromium/issues/detail?id=128513\">peut ne pas se produire</a> sur certains navigateurs. De plus, pour certaines personnes, avoir à fermer le navigateur pour nettoyer les cookies de session peut ne pas se révéler suffisant en terme de confidentialité.</p>",
         "description": ""
     },
     "privacyDeleteBlockedLocalStoragePrompt": {
-        "message": "Supprimer les <a href='http://fr.wikipedia.org/wiki/Stockage_web_local'>données locales</a> des noms d'hôtes bloqués",
+        "message": "Supprimer les <a href=\"http://fr.wikipedia.org/wiki/Stockage_web_local\">données locales</a> des noms d'hôtes bloqués",
         "description": ""
     },
     "privacyDeleteBlockedLocalStorageHelp": {
@@ -532,11 +532,11 @@
         "description": "Second part of 'Clear browser cache every [n] minutes'"
     },
     "privacyClearCacheHelp": {
-        "message": "<p>Certains sites Web sont déterminés à connaître votre vie privée en ligne, quitte à employer des méthodes peu orthodoxes pour contrer les dispositions que vous avez prises pour ne pas être victime de pistage.</p><p>Certaines de ces techniques exploitent<sup>[1, 2]</sup> le <a href='https://fr.wikipedia.org/wiki/Cache_web'>cache du navigateur</a> dont le contenu perdure souvent un bon bout de temps, puisque les utilisateurs prennent rarement le temps de fréquemment vider leur cache de navigation.</p><p>Nettoyer régulièrement le cache du navigateur est un dérangement aux yeux de certaines personnes, même si cela empêche ces envahissants pisteurs de bafouer votre confidentialité.</p><p>Cochez cette option pour que <i>uMatrix</i> s'en occupe à votre place, suivant la fréquence de votre choix.</p><p>[1] <a href='https://grepular.com/Preventing_Web_Tracking_via_the_Browser_Cache'>&ldquo;Preventing Web Tracking via the Browser Cache&rdquo;</a><br>[2] <a href='http://lucb1e.com/rp/cookielesscookies/'>&ldquo;Cookieless cookies”&rdquo;</a></p>",
+        "message": "<p>Certains sites Web sont déterminés à connaître votre vie privée en ligne, quitte à employer des méthodes peu orthodoxes pour contrer les dispositions que vous avez prises pour ne pas être victime de pistage.</p><p>Certaines de ces techniques exploitent<sup>[1, 2]</sup> le <a href=\"https://fr.wikipedia.org/wiki/Cache_web\">cache du navigateur</a> dont le contenu perdure souvent un bon bout de temps, puisque les utilisateurs prennent rarement le temps de fréquemment vider leur cache de navigation.</p><p>Nettoyer régulièrement le cache du navigateur est un dérangement aux yeux de certaines personnes, même si cela empêche ces envahissants pisteurs de bafouer votre confidentialité.</p><p>Cochez cette option pour que <i>uMatrix</i> s'en occupe à votre place, suivant la fréquence de votre choix.</p><p>[1] <a href=\"https://grepular.com/Preventing_Web_Tracking_via_the_Browser_Cache\">&ldquo;Preventing Web Tracking via the Browser Cache&rdquo;</a><br>[2] <a href=\"http://lucb1e.com/rp/cookielesscookies/\">&ldquo;Cookieless cookies”&rdquo;</a></p>",
         "description": ""
     },
     "privacyProcessRefererPrompt": {
-        "message": "Modifier les informations de <a href='https://fr.wikipedia.org/wiki/R%C3%A9f%C3%A9rant'>Référants HTTP</a> pour les tierces requêtes",
+        "message": "Modifier les informations de <a href=\"https://fr.wikipedia.org/wiki/R%C3%A9f%C3%A9rant\">Référants HTTP</a> pour les tierces requêtes",
         "description": ""
     },
     "privacyProcessRefererHelp": {
@@ -548,11 +548,11 @@
         "description": ""
     },
     "privacyNoMixedContentHelp": {
-        "message": "<p>D'après le <a href='https://developer.mozilla.org/en-US/docs/Security/MixedContent'>Mozilla Developer Network</a> :</p><blockquote>Si la page HTTPS comprend des éléments en provenance de trafic(s) HTTP, alors la connexion n'est encryptée que partiellement; le contenu non-encrypté est alors accessible aux analyseurs de paquets et peut être modifié lors d'attaques de l'homme du milieu, compromettant la sécurité de la connexion. Lorsqu'une page Web montre un tel comportement, elle est qualifiée de page Web au contenu mixte.</blockquote>",
+        "message": "<p>D'après le <a href=\"https://developer.mozilla.org/en-US/docs/Security/MixedContent\">Mozilla Developer Network</a> :</p><blockquote>Si la page HTTPS comprend des éléments en provenance de trafic(s) HTTP, alors la connexion n'est encryptée que partiellement; le contenu non-encrypté est alors accessible aux analyseurs de paquets et peut être modifié lors d'attaques de l'homme du milieu, compromettant la sécurité de la connexion. Lorsqu'une page Web montre un tel comportement, elle est qualifiée de page Web au contenu mixte.</blockquote>",
         "description": ""
     },
     "privacyProcessHyperlinkAuditingPrompt": {
-        "message": "Bloquer toutes les tentatives d'<a href='https://html.spec.whatwg.org/multipage/semantics.html#hyperlink-auditing'>audit hyperlien</a>",
+        "message": "Bloquer toutes les tentatives d'<a href=\"https://html.spec.whatwg.org/multipage/semantics.html#hyperlink-auditing\">audit hyperlien</a>",
         "description": ""
     },
     "privacyProcessHyperlinkAuditingHelp": {
@@ -684,7 +684,7 @@
         "description": ""
     },
     "aboutChangelog": {
-        "message": "<a href='https://github.com/gorhill/uMatrix/releases'>Journal des changements</a>",
+        "message": "<a href=\"https://github.com/gorhill/uMatrix/releases\">Journal des changements</a>",
         "description": ""
     },
     "aboutStorageUsed": {
@@ -692,11 +692,11 @@
         "description": ""
     },
     "aboutDoc": {
-        "message": "<a href='https://github.com/gorhill/uMatrix/wiki'>Documentation</a>",
+        "message": "<a href=\"https://github.com/gorhill/uMatrix/wiki\">Documentation</a>",
         "description": ""
     },
     "aboutPermissions": {
-        "message": "<a href='https://github.com/gorhill/uMatrix/wiki/Permissions'>Permissions</a>",
+        "message": "<a href=\"https://github.com/gorhill/uMatrix/wiki/Permissions\">Permissions</a>",
         "description": ""
     },
     "aboutCode": {
