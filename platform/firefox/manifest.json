@@ -1,69 +1,81 @@
 {
-    "browser_specific_settings": {
-        "gecko": {
-            "id": "uMatrix@raymondhill.net",
-            "strict_min_version": "56.0a1"
-        }
-    },
-    "author": "Raymond Hill",
-    "background": {
-        "page": "background.html"
-    },
-    "browser_action": {
-        "browser_style": false,
-        "default_icon": {
-            "19": "img/browsericons/icon19-off.png"
-        },
-        "default_title": "uMatrix",
-        "default_popup": "popup.html"
-    },
-    "content_scripts": [
-    {
-        "matches": ["http://*/*", "https://*/*"],
-        "js": ["/js/vapi.js", "/js/vapi-client.js", "/js/contentscript-start.js"],
-        "run_at": "document_start",
-        "all_frames": true
-        },
-    {
-        "matches": ["http://*/*", "https://*/*"],
-        "js": ["/js/contentscript.js"],
-        "run_at": "document_end",
-        "all_frames": true
-        }
-    ],
-    "default_locale": "en",
-    "description": "__MSG_extShortDesc__",
-    "icons": {
-        "16": "img/icon_16.png",
-        "128": "img/icon_128.png"
-    },
-    "manifest_version": 2,
-    "name": "uMatrix",
-    "options_ui": {
-      "page":"dashboard.html",
-      "open_in_tab": true
-    },
-    "permissions": [
-        "browsingData",
-        "cookies",
-        "dns",
-        "privacy",
-        "storage",
-        "tabs",
-        "webNavigation",
-        "webRequest",
-        "webRequestBlocking",
-        "<all_urls>"
-    ],
-    "short_name": "uMatrix",
-    "sidebar_action": {
-        "default_title": "__MSG_loggerPageName__",
-        "default_panel": "logger-ui.html",
-        "default_icon": {
-            "16": "img/icon_16.png",
-            "128": "img/icon_128.png"
-        },
-        "open_at_install": false
-    },
-    "version": "0.9.9"
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "uMatrix@raymondhill.net",
+			"strict_min_version": "56.0a1"
+		}
+	},
+	"author": "Raymond Hill",
+	"background": {
+		"page": "background.html"
+	},
+	"browser_action": {
+		"browser_style": false,
+		"default_icon": {
+			"19": "img/browsericons/icon19-off.png"
+		},
+		"default_title": "uMatrix",
+		"default_popup": "popup.html"
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"http://*/*",
+				"https://*/*"
+			],
+			"js": [
+				"/js/vapi.js",
+				"/js/vapi-client.js",
+				"/js/contentscript-start.js"
+			],
+			"run_at": "document_start",
+			"all_frames": true
+		},
+		{
+			"matches": [
+				"http://*/*",
+				"https://*/*"
+			],
+			"js": [
+				"/js/contentscript.js"
+			],
+			"run_at": "document_end",
+			"all_frames": true
+		}
+	],
+	"default_locale": "en",
+	"description": "__MSG_extShortDesc__",
+	"icons": {
+		"16": "img/icon_16.png",
+		"128": "img/icon_128.png"
+	},
+	"manifest_version": 2,
+	"name": "uMatrix",
+	"options_ui": {
+		"page": "dashboard.html",
+		"open_in_tab": true
+	},
+	"permissions": [
+		"browsingData",
+		"cookies",
+		"dns",
+		"privacy",
+		"storage",
+		"tabs",
+		"webNavigation",
+		"webRequest",
+		"webRequestBlocking",
+		"<all_urls>"
+	],
+	"short_name": "uMatrix",
+	"sidebar_action": {
+		"default_title": "__MSG_loggerPageName__",
+		"default_panel": "logger-ui.html",
+		"default_icon": {
+			"16": "img/icon_16.png",
+			"128": "img/icon_128.png"
+		},
+		"open_at_install": false
+	},
+	"version": "0.9.9"
 }
