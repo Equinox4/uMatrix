@@ -1,81 +1,116 @@
-body {
-    background-color: #fff;
-    box-sizing: border-box;
-    color: #000;
-    margin: 0;
-    padding: 0;
-    font: 14px/1.4 sans-serif;
-    }
-body > *:first-child {
-    margin-top: 0;
-    }
-div.body {
-    padding: 0 0.5em 0.5em 0.5em;
-    }
-html.ltr h2 + * {
-    margin: 0 0 0 1em;
-    }
-html.rtl h2 + * {
-    margin: 0 1em 0 0;
-    }
-a {
-    text-decoration: none;
-    }
-button {
-    align-items: center;
-    display: inline-flex;
-    padding: 0.3em 0.5em;
-    }
-input[disabled] + label {
-    color: gray;
-    }
-.para {
-    width: 40em;
-    }
+body
+{
+	background-color: #fff;
+	box-sizing: border-box;
+	color: #000;
+	margin: 0;
+	padding: 0;
+	font: 14px/1.4 sans-serif;
+}
 
-.fa-icon.info {
-    opacity: 0.25;
-    vertical-align: middle;
-    }
-.fa-icon.info:hover {
-    opacity: 1;
-    }
-.fa-icon.info.important {
-    color: red;
-    fill: red;
-    }
+body > *:first-child
+{
+	margin-top: 0;
+}
 
-.whatisthis {
-    border: 0;
-    cursor: pointer;
-    margin: 0 0 0 0.2em;
-    opacity: 0.25;
-    vertical-align: middle;
-    }
-.whatisthis:hover {
-    opacity: 1.0;
-    }
-.whatisthis-expandable {
-    background-color: #F8F8F8;
-    border: 1px dotted #aaa;
-    display: none;
-    font-size: smaller;
-    margin: 0.5em 0 1em 1.25em;
-    padding: 0.5em;
-    white-space: pre-line;
-    }
-.whatisthis-expandable > p {
-    margin-top: 1em;
-    margin-bottom: 0;
-    }
-.whatisthis-expandable > p:first-child {
-    margin-top: 0;
-    }
-.whatisthis-expandable.whatisthis-expanded {
-    display: block;
-    }
-.warn {
-    margin: 0;
-    padding: 5px;
-    background-color: #FEDAE0;
-    }
+div.body
+{
+	padding: 0 0.5em 0.5em 0.5em;
+}
+
+html.ltr h2 + *
+{
+	margin: 0 0 0 1em;
+}
+
+html.rtl h2 + *
+{
+	margin: 0 1em 0 0;
+}
+
+a
+{
+	text-decoration: none;
+}
+
+button
+{
+	align-items: center;
+	display: inline-flex;
+	padding: 0.3em 0.5em;
+}
+
+input[disabled] + label
+{
+	color: gray;
+}
+
+.para
+{
+	width: 40em;
+}
+
+.fa-icon.info
+{
+	opacity: 0.25;
+	vertical-align: middle;
+}
+
+.fa-icon.info:hover
+{
+	opacity: 1;
+}
+
+.fa-icon.info.important
+{
+	color: red;
+	fill: red;
+}
+
+.whatisthis
+{
+	border: 0;
+	cursor: pointer;
+	margin: 0 0 0 0.2em;
+	opacity: 0.25;
+	vertical-align: middle;
+}
+
+.whatisthis:hover
+{
+	opacity: 1.0;
+}
+
+.whatisthis-expandable
+{
+	background-color: #F8F8F8;
+	border: 1px dotted #aaa;
+	display: none;
+	font-size: smaller;
+	margin: 0.5em 0 1em 1.25em;
+	padding: 0.5em;
+	white-space: pre-line;
+}
+
+.whatisthis-expandable > p
+{
+	margin-top: 1em;
+	margin-bottom: 0;
+}
+
+.whatisthis-expandable > p:first-child
+{
+	margin-top: 0;
+}
+
+.whatisthis-expandable.whatisthis-expanded
+{
+	display: block;
+}
+
+.warn
+{
+	margin: 0;
+	padding: 5px;
+	background-color: #FEDAE0;
+}

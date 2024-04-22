@@ -1,85 +1,120 @@
-html {
-    height: 100vh;
-    overflow: hidden;
-    }
-#diff {
-    border: 0;
-    margin: 0;
-    padding: 0;
-    white-space: nowrap;
+html
+{
+	height: 100vh;
+	overflow: hidden;
 }
-#diff .tools > * {
-    margin-bottom: 0.5em;
-    }
-#diff .ruleActions {
-    border: 0;
-    box-sizing: border-box;
-    display: inline-block;
-    padding: 0;
-    text-align: center;
-    vertical-align: top;
-    width: 50%;
-    }
-#diff .ruleActions > h3 {
-    font-weight: normal;
-    margin: 0 0 0.5em 0;
-    }
-#diff .ruleActions > div {
-    display: flex;
-    justify-content: center;
-    }
-#diff .ruleActions > div > button {
-    margin-right: 1em;
-    }
-#ruleFilter {
-    align-items: center;
-    direction: ltr;
-    display: flex;
-    justify-content: center;
-    }
-#ruleFilter .fa-icon {
-    color: #888;
-    fill: #888;
-    }
+
+#diff
+{
+	border: 0;
+	margin: 0;
+	padding: 0;
+	white-space: nowrap;
+}
+
+#diff .tools > *
+{
+	margin-bottom: 0.5em;
+}
+
+#diff .ruleActions
+{
+	border: 0;
+	box-sizing: border-box;
+	display: inline-block;
+	padding: 0;
+	text-align: center;
+	vertical-align: top;
+	width: 50%;
+}
+
+#diff .ruleActions > h3
+{
+	font-weight: normal;
+	margin: 0 0 0.5em 0;
+}
+
+#diff .ruleActions > div
+{
+	display: flex;
+	justify-content: center;
+}
+
+#diff .ruleActions > div > button
+{
+	margin-right: 1em;
+}
+
+#ruleFilter
+{
+	align-items: center;
+	direction: ltr;
+	display: flex;
+	justify-content: center;
+}
+
+#ruleFilter .fa-icon
+{
+	color: #888;
+	fill: #888;
+}
 
 body[dir="ltr"] #revertButton > span:nth-of-type(2),
-body[dir="rtl"] #commitButton > span:nth-of-type(1) {
-    transform: scale(-1, 1);
-    }
+body[dir="rtl"] #commitButton > span:nth-of-type(1)
+{
+	transform: scale(-1, 1);
+}
+
 #revertButton,
 #commitButton,
 #editSaveButton,
 #diff.editing #exportButton,
-#diff.editing #importButton {
-    opacity: 0.25;
-    pointer-events: none;
-    }
+#diff.editing #importButton
+{
+	opacity: 0.25;
+	pointer-events: none;
+}
+
 #diff.dirty:not(.editing) #revertButton,
 #diff.dirty:not(.editing) #commitButton,
-#diff.editing #editSaveButton {
-    opacity: 1;
-    pointer-events: auto;
-    }
+#diff.editing #editSaveButton
+{
+	opacity: 1;
+	pointer-events: auto;
+}
 
-.codeMirrorContainer {
-    box-sizing: border-box;
-    padding: 0;
-    }
-.CodeMirror-merge, .CodeMirror-merge-pane, .CodeMirror-merge .CodeMirror {
-    box-sizing: border-box;
-    height: 100%;
-    }
+.codeMirrorContainer
+{
+	box-sizing: border-box;
+	padding: 0;
+}
+
+.CodeMirror-merge,
+.CodeMirror-merge-pane,
+.CodeMirror-merge .CodeMirror
+{
+	box-sizing: border-box;
+	height: 100%;
+}
+
 #diff.editing .CodeMirror-merge-copy,
-#diff.editing .CodeMirror-merge-copy-reverse {
-    display: none;
-    }
-#diff.editing .CodeMirror-merge-left .CodeMirror {
-    color: #888;
-    }
-#diff.editing .CodeMirror-merge-editor .CodeMirror {
-    background-color: #ffe;
-    }
-body[dir="rtl"] .CodeMirror-merge-pane-rightmost {
-    right: unset;
-    left: 0;
+#diff.editing .CodeMirror-merge-copy-reverse
+{
+	display: none;
+}
+
+#diff.editing .CodeMirror-merge-left .CodeMirror
+{
+	color: #888;
+}
+
+#diff.editing .CodeMirror-merge-editor .CodeMirror
+{
+	background-color: #ffe;
+}
+
+body[dir="rtl"] .CodeMirror-merge-pane-rightmost
+{
+	right: unset;
+	left: 0;
 }

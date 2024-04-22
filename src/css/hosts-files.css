@@ -1,165 +1,257 @@
-@keyframes spin {
-    0% { transform: rotate(0); }
-    100% { transform: rotate(360deg); }
-    }
-ul {
-    padding: 0;
-    list-style-type: none;
-    }
-ul#options {
-    margin-top: 0;
-    }
-ul#options li {
-    margin-bottom: 0.5em;
-    }
-.assets {
-    border: 1px solid #ccc;
-    margin: 0.5em 0 0 0;
-    padding: 0;
-    }
-.assets > div:first-of-type {
-    background-color: #eee;
-    margin: 0;
-    padding: 0.25em 0.5em;
-    }
-.assets > div + div {
-    padding: 0.5em 1em;
-    }
-ul#lists {
-    margin: 0.5em 0 0 0;
-    padding: 0;
-    }
-li.listEntry {
-    align-items: baseline;
-    display: flex;
-    margin: 0 auto 0 auto;
-    padding: 0.2em 0;
-    }
-body[dir="ltr"] li.listEntry {
-    margin-left: 1em;
-    margin-right: 0em;
-    }
-body[dir="rtl"] li.listEntry {
-    margin-left: 0em;
-    margin-right: 1em;
-    }
-li.listEntry > * {
-    margin-right: 0.5em;
-    text-indent: 0;
-    unicode-bidi: embed;
-    }
-li.listEntry .content {
-    display: inline-block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    }
-li.listEntry.toRemove > input[type="checkbox"] {
-    visibility: hidden;
-    }
-li.listEntry.toRemove .content {
-    text-decoration: line-through;
-    }
-li.listEntry > .fa-icon {
-    align-self: flex-end;
-    color: #444;
-    display: none;
-    fill: #444;
-    opacity: 0.5;
-    padding: 0.2em;
-    }
-li.listEntry > .status {
-    display: none;
-    }
-li.listEntry .fa-icon.status {
-    cursor: default;
+@keyframes spin
+{
+	0%
+	{
+		transform: rotate(0);
+	}
+
+	100%
+	{
+		transform: rotate(360deg);
+	}
 }
-li.listEntry > .fa-icon:hover {
-    opacity: 1;
-    }
-li.listEntry.external .remove {
-    color: darkred;
-    fill: darkred;
-    }
-li.listEntry.external .remove {
-    display: inline-flex;
-    }
-li.listEntry > a.fa-icon:not([href=""]) {
-    display: inline-flex;
-    }
-li.listEntry > a.mustread:hover {
-    color: mediumblue;
-    fill: mediumblue;
-    }
-li.listEntry > .counts {
-    font-size: smaller;
+
+ul
+{
+	padding: 0;
+	list-style-type: none;
 }
-li.listEntry > input[type="checkbox"]:checked ~ .counts {
-    display: inline;
-    }
-li.listEntry .unsecure {
-    color: darkred;
-    fill: darkred;
-    }
-li.listEntry.unsecure input[type="checkbox"]:checked ~ .unsecure {
-    display: inline-flex;
-    }
+
+ul#options
+{
+	margin-top: 0;
+}
+
+ul#options li
+{
+	margin-bottom: 0.5em;
+}
+
+.assets
+{
+	border: 1px solid #ccc;
+	margin: 0.5em 0 0 0;
+	padding: 0;
+}
+
+.assets > div:first-of-type
+{
+	background-color: #eee;
+	margin: 0;
+	padding: 0.25em 0.5em;
+}
+
+.assets > div + div
+{
+	padding: 0.5em 1em;
+}
+
+ul#lists
+{
+	margin: 0.5em 0 0 0;
+	padding: 0;
+}
+
+li.listEntry
+{
+	align-items: baseline;
+	display: flex;
+	margin: 0 auto 0 auto;
+	padding: 0.2em 0;
+}
+
+body[dir="ltr"] li.listEntry
+{
+	margin-left: 1em;
+	margin-right: 0em;
+}
+
+body[dir="rtl"] li.listEntry
+{
+	margin-left: 0em;
+	margin-right: 1em;
+}
+
+li.listEntry > *
+{
+	margin-right: 0.5em;
+	text-indent: 0;
+	unicode-bidi: embed;
+}
+
+li.listEntry .content
+{
+	display: inline-block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+li.listEntry.toRemove > input[type="checkbox"]
+{
+	visibility: hidden;
+}
+
+li.listEntry.toRemove .content
+{
+	text-decoration: line-through;
+}
+
+li.listEntry > .fa-icon
+{
+	align-self: flex-end;
+	color: #444;
+	display: none;
+	fill: #444;
+	opacity: 0.5;
+	padding: 0.2em;
+}
+
+li.listEntry > .status
+{
+	display: none;
+}
+
+li.listEntry .fa-icon.status
+{
+	cursor: default;
+}
+
+li.listEntry > .fa-icon:hover
+{
+	opacity: 1;
+}
+
+li.listEntry.external .remove
+{
+	color: darkred;
+	fill: darkred;
+}
+
+li.listEntry.external .remove
+{
+	display: inline-flex;
+}
+
+li.listEntry > a.fa-icon:not([href=""])
+{
+	display: inline-flex;
+}
+
+li.listEntry > a.mustread:hover
+{
+	color: mediumblue;
+	fill: mediumblue;
+}
+
+li.listEntry > .counts
+{
+	font-size: smaller;
+}
+
+li.listEntry > input[type="checkbox"]:checked ~ .counts
+{
+	display: inline;
+}
+
+li.listEntry .unsecure
+{
+	color: darkred;
+	fill: darkred;
+}
+
+li.listEntry.unsecure input[type="checkbox"]:checked ~ .unsecure
+{
+	display: inline-flex;
+}
+
 li.listEntry .fa-icon.remove,
-li.listEntry .fa-icon.cache {
-    cursor: pointer;
-    }
-li.listEntry.cached:not(.obsolete) input[type="checkbox"]:checked ~ .cache {
-    display: inline-flex;
-    }
-li.listEntry .obsolete {
-    color: hsl(36, 100%, 40%);
-    fill: hsl(36, 100%, 40%);
-    }
-body:not(.updating) li.listEntry.obsolete input[type="checkbox"]:checked ~ .obsolete {
-    display: inline-flex;
-    }
-li.listEntry .updating {
-    animation: spin 1s steps(8) infinite;
-    transform-origin: 50%;
-    }
-body.updating li.listEntry.obsolete input[type="checkbox"]:checked ~ .updating {
-    display: inline-flex;
-    }
-li.listEntry .failed {
-    color: darkred;
-    fill: darkred;
-    }
-li.listEntry.failed input[type="checkbox"]:checked ~ .failed {
-    display: inline-flex;
-    }
-.dim {
-    opacity: 0.5;
-    }
-li.listEntry.notAnAsset {
-    flex-wrap: wrap;
-    }
-li.listEntry.notAnAsset > input[type="checkbox"] ~ textarea {
-    display: none;
-    margin-left: 1.6em;
-    }
-li.listEntry.notAnAsset > input[type="checkbox"]:checked ~ textarea {
-    display: block;
-    }
-li.listEntry.notAnAsset > textarea {
-    border: 1px solid #ddd;
-    box-sizing: border-box;
-    display: block;
-    font-size: smaller;
-    width: calc(100% - 4em);
-    height: 6em;
-    resize: vertical;
-    white-space: pre;
-    }
-#recipes li.listEntry.toInline {
-    display: none;
-    }
-body.contributor #recipes li.listEntry.toInline {
-    display: block;
-    }
-#recipes li.listEntry.toInline > textarea {
-    height: 18em;
-    }
+li.listEntry .fa-icon.cache
+{
+	cursor: pointer;
+}
+
+li.listEntry.cached:not(.obsolete) input[type="checkbox"]:checked ~ .cache
+{
+	display: inline-flex;
+}
+
+li.listEntry .obsolete
+{
+	color: hsl(36, 100%, 40%);
+	fill: hsl(36, 100%, 40%);
+}
+
+body:not(.updating) li.listEntry.obsolete input[type="checkbox"]:checked ~ .obsolete
+{
+	display: inline-flex;
+}
+
+li.listEntry .updating
+{
+	animation: spin 1s steps(8) infinite;
+	transform-origin: 50%;
+}
+
+body.updating li.listEntry.obsolete input[type="checkbox"]:checked ~ .updating
+{
+	display: inline-flex;
+}
+
+li.listEntry .failed
+{
+	color: darkred;
+	fill: darkred;
+}
+
+li.listEntry.failed input[type="checkbox"]:checked ~ .failed
+{
+	display: inline-flex;
+}
+
+.dim
+{
+	opacity: 0.5;
+}
+
+li.listEntry.notAnAsset
+{
+	flex-wrap: wrap;
+}
+
+li.listEntry.notAnAsset > input[type="checkbox"] ~ textarea
+{
+	display: none;
+	margin-left: 1.6em;
+}
+
+li.listEntry.notAnAsset > input[type="checkbox"]:checked ~ textarea
+{
+	display: block;
+}
+
+li.listEntry.notAnAsset > textarea
+{
+	border: 1px solid #ddd;
+	box-sizing: border-box;
+	display: block;
+	font-size: smaller;
+	width: calc(100% - 4em);
+	height: 6em;
+	resize: vertical;
+	white-space: pre;
+}
+
+#recipes li.listEntry.toInline
+{
+	display: none;
+}
+
+body.contributor #recipes li.listEntry.toInline
+{
+	display: block;
+}
+
+#recipes li.listEntry.toInline > textarea
+{
+	height: 18em;
+}
