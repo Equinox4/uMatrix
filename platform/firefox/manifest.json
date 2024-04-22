@@ -1,11 +1,11 @@
 {
 	"browser_specific_settings": {
 		"gecko": {
-			"id": "uMatrix@raymondhill.net",
+			"id": "uMatrix@mjollnir.fr",
 			"strict_min_version": "56.0a1"
 		}
 	},
-	"author": "Raymond Hill",
+	"author": "Mjöllnir",
 	"background": {
 		"page": "background.html"
 	},
@@ -77,5 +77,5 @@
 		},
 		"open_at_install": false
 	},
-	"version": "0.9.9"
+	"version": "1.4.5"
 }
