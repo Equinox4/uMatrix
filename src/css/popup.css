@@ -347,10 +347,10 @@ body.tabless .needtab {
     text-align: left;
     }
 .matRow {
-    align-items: flex-start;
     display: flex;
     }
 .matCell {
+    align-items: flex-start;
     box-sizing: content-box;
     display: inline-flex;
     flex-shrink: 0;
@@ -375,6 +375,7 @@ body.tabless .needtab {
     }
 .paneContent .matrix .matRow > .matCell:first-child > b {
     font-weight: normal;
+    display: contents;
     }
 
 /* RFC 3987 Internationalized Resource Identifiers (IRIs) -- 4.4 */
@@ -385,7 +386,7 @@ body.tabless .needtab {
     justify-content: flex-end;
     unicode-bidi: embed;
     width: 16em;
-    word-break: keep-all;
+    word-break: break-all;
     }
 .matrix .matGroup.g4 .matRow.ro > .matCell:first-child {
     direction: inherit;

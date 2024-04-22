@@ -27,6 +27,10 @@
 .fa-icon.disabled > .fa-icon-badge {
     display: none;
     }
+
+.fa-icon.fa-icon-vflipped {
+    transform: scale(1, -1);
+    }
 .fa-icon.fa-icon-badged > .fa-icon-badge {
     background-color: rgba(255, 255, 255, 0.7);
     border-radius: 3px;

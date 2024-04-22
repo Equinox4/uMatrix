@@ -1,17 +1,19 @@
+%YAML 1.2
+---
 sudo: false
 env:
   matrix:
-  - BROWSER=chromium EXT=zip
-  - BROWSER=firefox EXT=xpi
+    - BROWSER='chromium' EXT='zip'
+    - BROWSER='firefox'  EXT='xpi'
 script: "./tools/make-${BROWSER}.sh ${TRAVIS_TAG}"
 deploy:
   provider: releases
   prerelease: true
   api_key:
-    secure: eQgPAHH6PKu2dLK+NafxwLl66t0cyW5x5NZFquOwsNMal5nsfof7lyXj2F0Q0vUpGeI21MOipBI8UGv5oXPoiXnr0fhEbEBz65C9vypK61WkDCQVGVeZVNGQwSXUm6gD2EzpPgTCIs52+7dKCDJ3stXzdimOiOTYs4WMNKKarFM=
-  file: dist/build/uMatrix_${TRAVIS_TAG}.${BROWSER}.${EXT}
+    secure: 'eQgPAHH6PKu2dLK+NafxwLl66t0cyW5x5NZFquOwsNMal5nsfof7lyXj2F0Q0vUpG eI21MOipBI8UGv5oXPoiXnr0fhEbEBz65C9vypK61WkDCQVGVeZVNGQwSXUm6gD2EzpPgTCIs52+7dKCDJ3stXzdimOiOTYs4WMNKKarFM='
+  file: "dist/build/uMatrix_${TRAVIS_TAG}.${BROWSER}.${EXT}"
   skip_cleanup: true
   on:
-    repo: gorhill/uMatrix
+    repo: 'gorhill/uMatrix'
     tags: true
     all_branches: true
