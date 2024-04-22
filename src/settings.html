@@ -1,127 +1,144 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>uMatrix — Settings</title>
-<link rel="stylesheet" href="css/fa-icons.css">
-<link rel="stylesheet" href="css/common.css">
-<link rel="stylesheet" href="css/dashboard-common.css">
-<style>
-div > p:first-child {
-    margin-top: 0;
-    }
-div > p:last-child {
-    margin-bottom: 0;
-    }
-ul {
-    padding: 0;
-    list-style-type: none;
-    }
-ul > li {
-    margin: 0.2em 0 0.2em 1em;
-    }
-ul > li.separator {
-    margin: 0.5em 0;
-    }
-.dim {
-    font-weight: 100;
-    color: #888;
-    }
-</style>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>uMatrix — Settings</title>
+	<link rel="stylesheet" href="css/fa-icons.css">
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/dashboard-common.css">
+	<style>
+		div>p:first-child {
+			margin-top: 0;
+		}
+
+		div>p:last-child {
+			margin-bottom: 0;
+		}
+
+		ul {
+			padding: 0;
+			list-style-type: none;
+		}
+
+		ul>li {
+			margin: 0.2em 0 0.2em 1em;
+		}
+
+		ul>li.separator {
+			margin: 0.5em 0;
+		}
+
+		.dim {
+			font-weight: 100;
+			color: #888;
+		}
+	</style>
 </head>
-
 <body>
-<div class="body">
+	<div class="body">
 
-<h3 data-i18n="settingsMatrixConvenienceHeader"></h3>
-<ul>
-    <li><input id="iconBadgeEnabled" type="checkbox" data-setting-bool>
-        <label data-i18n="settingsIconBadgeEnabled" for="iconBadgeEnabled"></label>
-    <li><input id="collapseBlocked" type="checkbox" data-setting-bool>
-        <label data-i18n="settingsCollapseBlocked" for="collapseBlocked"></label>
-        <ul>
-            <li><input id="collapseBlacklisted" type="checkbox" data-setting-bool>
-                <label data-i18n="settingsCollapseBlacklisted" for="collapseBlacklisted"></label>
-        </ul>
-    <li><input id="noscriptTagsSpoofed" type="checkbox" data-matrix-switch="noscript-spoof">
-        <label data-i18n="settingsNoscriptTagsSpoofed" for="noscriptTagsSpoofed"></label>
-    <li><input id="cloudStorageEnabled" type="checkbox" data-setting-bool>
-        <label data-i18n="settingsCloudStorageEnabled" for="cloudStorageEnabled"></label>
-    <li>
-        <input id="noTooltips" type="checkbox" data-setting-bool>
-        <label data-i18n="settingsMatrixNoTooltips" for="noTooltips"></label>
-</ul>
-<h3 data-i18n="settingsMatrixDisplayHeader"></h3>
-<ul>
-    <li><span data-i18n="settingsMatrixDisplayTextSizePrompt"></span>&ensp;&minus;<input id="displayTextSize" type="range" min="10" max="18" value="14" style="margin:0 0.2em;vertical-align:bottom;">&plus;
-    <li class="separator">
-    <li>
-        <label data-i18n="settingsDefaultScopeLevel"></label> <select id="popupScopeLevel"><option data-i18n="settingsDefaultScopeLevel2" value="site"><option data-i18n="settingsDefaultScopeLevel1" value="domain"><option data-i18n="settingsDefaultScopeLevel0" value="*"></select>
-    <li class="separator">
-    <li>
-        <input id="colorBlindFriendly" type="checkbox" data-setting-bool>
-        <label data-i18n="settingsMatrixDisplayColorBlind" for="colorBlindFriendly"></label>
-</ul>
-<h3 data-i18n="privacyPageName"></h3>
-<ul>
-    <li>
-        <input id="deleteCookies" type="checkbox" data-setting-bool><label data-i18n="privacyDeleteBlockedCookiesPrompt" for="deleteCookies"></label>
-        <span class="fa-icon whatisthis">question-circle</span>
-        <div class="whatisthis-expandable para" data-i18n="privacyDeleteBlockedCookiesHelp"></div>
-    <li>
-        <input id="deleteUnusedSessionCookies" type="checkbox" data-setting-bool><label data-i18n="privacyDeleteNonBlockedSessionCookiesPrompt1" for="deleteUnusedSessionCookies"></label>
-        <input id="deleteUnusedSessionCookiesAfter" type="text" value="60" size="3"><span data-i18n="privacyDeleteNonBlockedSessionCookiesPrompt2"></span>
-        <span class="fa-icon whatisthis">question-circle</span>
-        <div class="whatisthis-expandable para" data-i18n="privacyDeleteNonBlockedSessionCookiesHelp"></div>
-    <!--
-        Delete non-blocked session cookies x minutes after the last time they have been used.
+		<h3 data-i18n="settingsMatrixConvenienceHeader"></h3>
+		<ul>
+			<li><input id="iconBadgeEnabled" type="checkbox" data-setting-bool>
+				<label data-i18n="settingsIconBadgeEnabled" for="iconBadgeEnabled"></label>
+			<li><input id="collapseBlocked" type="checkbox" data-setting-bool>
+				<label data-i18n="settingsCollapseBlocked" for="collapseBlocked"></label>
+				<ul>
+					<li><input id="collapseBlacklisted" type="checkbox" data-setting-bool>
+						<label data-i18n="settingsCollapseBlacklisted" for="collapseBlacklisted"></label>
+				</ul>
+			<li><input id="noscriptTagsSpoofed" type="checkbox" data-matrix-switch="noscript-spoof">
+				<label data-i18n="settingsNoscriptTagsSpoofed" for="noscriptTagsSpoofed"></label>
+			<li><input id="cloudStorageEnabled" type="checkbox" data-setting-bool>
+				<label data-i18n="settingsCloudStorageEnabled" for="cloudStorageEnabled"></label>
+			<li>
+				<input id="noTooltips" type="checkbox" data-setting-bool>
+				<label data-i18n="settingsMatrixNoTooltips" for="noTooltips"></label>
+		</ul>
+		<h3 data-i18n="settingsMatrixDisplayHeader"></h3>
+		<ul>
+			<li><span data-i18n="settingsMatrixDisplayTextSizePrompt"></span>&ensp;&minus;<input id="displayTextSize"
+					type="range" min="10" max="18" value="14" style="margin:0 0.2em;vertical-align:bottom;">&plus;
+			<li class="separator">
+			<li>
+				<label data-i18n="settingsDefaultScopeLevel"></label> <select id="popupScopeLevel">
+					<option data-i18n="settingsDefaultScopeLevel2" value="site">
+					<option data-i18n="settingsDefaultScopeLevel1" value="domain">
+					<option data-i18n="settingsDefaultScopeLevel0" value="*">
+				</select>
+			<li class="separator">
+			<li>
+				<input id="colorBlindFriendly" type="checkbox" data-setting-bool>
+				<label data-i18n="settingsMatrixDisplayColorBlind" for="colorBlindFriendly"></label>
+		</ul>
+		<h3 data-i18n="privacyPageName"></h3>
+		<ul>
+			<li>
+				<input id="deleteCookies" type="checkbox" data-setting-bool><label
+					data-i18n="privacyDeleteBlockedCookiesPrompt" for="deleteCookies"></label>
+				<span class="fa-icon whatisthis">question-circle</span>
+				<div class="whatisthis-expandable para" data-i18n="privacyDeleteBlockedCookiesHelp"></div>
+			<li>
+				<input id="deleteUnusedSessionCookies" type="checkbox" data-setting-bool><label
+					data-i18n="privacyDeleteNonBlockedSessionCookiesPrompt1" for="deleteUnusedSessionCookies"></label>
+				<input id="deleteUnusedSessionCookiesAfter" type="text" value="60" size="3"><span
+					data-i18n="privacyDeleteNonBlockedSessionCookiesPrompt2"></span>
+				<span class="fa-icon whatisthis">question-circle</span>
+				<div class="whatisthis-expandable para" data-i18n="privacyDeleteNonBlockedSessionCookiesHelp"></div>
+				<!--
+		Delete non-blocked session cookies x minutes after the last time they have been used.
 
-        Allow generically blocked cookies but deleted them x minutes after they have been first created.
+		Allow generically blocked cookies but deleted them x minutes after they have been first created.
 
-        A "generically blocked" cookie is a cookie which inherits its block status in 
-        the matrix from the `cookie` cell or the `all` cell in the top row of the 
-        matrix.
+		A "generically blocked" cookie is a cookie which inherits its block status in 
+		the matrix from the `cookie` cell or the `all` cell in the top row of the 
+		matrix.
 
-        When a cookie inherits its block status from a cell in the top row of the 
-        matrix (the "header" row), this means it is not specifically distrusted, but 
-        rather that the default stance is to distrust cookies in general.
+		When a cookie inherits its block status from a cell in the top row of the 
+		matrix (the "header" row), this means it is not specifically distrusted, but 
+		rather that the default stance is to distrust cookies in general.
 
-        However some sites do require cookies to minimally work properly. This options 
-        allow to "unbreak" these sites by allowing not specifically distrusted cookies 
-        to travel back and forth between you and the server, but to limit the lifetime 
-        of these cookies so that they cannot be used to track you.
-    -->
-    <li>
-        <input id="deleteLocalStorage" type="checkbox" data-setting-bool><label data-i18n="privacyDeleteBlockedLocalStoragePrompt" for="deleteLocalStorage"></label>
-    <li>
-        <input id="clearBrowserCache" type="checkbox" data-setting-bool><label data-i18n="privacyClearCachePrompt1" for="clearBrowserCache"></label> 
-        <input id="clearBrowserCacheAfter" type="text" value="60" size="3"> <label data-i18n="privacyClearCachePrompt2" for="clearBrowserCacheAfter"></label>
-        <span class="fa-icon whatisthis">question-circle</span>
-        <div class="whatisthis-expandable para" data-i18n="privacyClearCacheHelp"></div>
-    <li>
-        <input id="processReferer" type="checkbox" data-matrix-switch="referrer-spoof"><label data-i18n="privacyProcessRefererPrompt" for="processReferer"></label>
-        <span class="fa-icon whatisthis">question-circle</span>
-        <div class="whatisthis-expandable para" data-i18n="privacyProcessRefererHelp"></div>
-    <li>
-        <input id="noMixedContent" type="checkbox" data-matrix-switch="https-strict"><label data-i18n="privacyNoMixedContentPrompt" for="noMixedContent"></label>
-        <span class="fa-icon whatisthis">question-circle</span>
-        <div class="whatisthis-expandable para" data-i18n="privacyNoMixedContentHelp"></div>
-    <li>
-        <input id="processHyperlinkAuditing" type="checkbox" data-setting-bool><label data-i18n="privacyProcessHyperlinkAuditingPrompt" for="processHyperlinkAuditing"></label>
-        <span class="fa-icon whatisthis">question-circle</span>
-        <div class="whatisthis-expandable para" data-i18n="privacyProcessHyperlinkAuditingHelp"></div>
-</ul>
+		However some sites do require cookies to minimally work properly. This options 
+		allow to "unbreak" these sites by allowing not specifically distrusted cookies 
+		to travel back and forth between you and the server, but to limit the lifetime 
+		of these cookies so that they cannot be used to track you.
+	-->
+			<li>
+				<input id="deleteLocalStorage" type="checkbox" data-setting-bool><label
+					data-i18n="privacyDeleteBlockedLocalStoragePrompt" for="deleteLocalStorage"></label>
+			<li>
+				<input id="clearBrowserCache" type="checkbox" data-setting-bool><label
+					data-i18n="privacyClearCachePrompt1" for="clearBrowserCache"></label>
+				<input id="clearBrowserCacheAfter" type="text" value="60" size="3"> <label
+					data-i18n="privacyClearCachePrompt2" for="clearBrowserCacheAfter"></label>
+				<span class="fa-icon whatisthis">question-circle</span>
+				<div class="whatisthis-expandable para" data-i18n="privacyClearCacheHelp"></div>
+			<li>
+				<input id="processReferer" type="checkbox" data-matrix-switch="referrer-spoof"><label
+					data-i18n="privacyProcessRefererPrompt" for="processReferer"></label>
+				<span class="fa-icon whatisthis">question-circle</span>
+				<div class="whatisthis-expandable para" data-i18n="privacyProcessRefererHelp"></div>
+			<li>
+				<input id="noMixedContent" type="checkbox" data-matrix-switch="https-strict"><label
+					data-i18n="privacyNoMixedContentPrompt" for="noMixedContent"></label>
+				<span class="fa-icon whatisthis">question-circle</span>
+				<div class="whatisthis-expandable para" data-i18n="privacyNoMixedContentHelp"></div>
+			<li>
+				<input id="processHyperlinkAuditing" type="checkbox" data-setting-bool><label
+					data-i18n="privacyProcessHyperlinkAuditingPrompt" for="processHyperlinkAuditing"></label>
+				<span class="fa-icon whatisthis">question-circle</span>
+				<div class="whatisthis-expandable para" data-i18n="privacyProcessHyperlinkAuditingHelp"></div>
+		</ul>
 
-</div><!-- end of div.body -->
+	</div><!-- end of div.body -->
 
-<script src="js/fa-icons.js"></script>
-<script src="js/vapi.js"></script>
-<script src="js/vapi-common.js"></script>
-<script src="js/vapi-client.js"></script>
-<script src="js/udom.js"></script>
-<script src="js/i18n.js"></script>
-<script src="js/dashboard-common.js"></script>
-<script src="js/settings.js"></script>
+	<script src="js/fa-icons.js"></script>
+	<script src="js/vapi.js"></script>
+	<script src="js/vapi-common.js"></script>
+	<script src="js/vapi-client.js"></script>
+	<script src="js/udom.js"></script>
+	<script src="js/i18n.js"></script>
+	<script src="js/dashboard-common.js"></script>
+	<script src="js/settings.js"></script>
 </body>
-
 </html>

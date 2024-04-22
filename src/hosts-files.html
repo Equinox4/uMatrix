@@ -1,80 +1,89 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>uMatrix — Hosts files</title>
-<link rel="stylesheet" href="css/fa-icons.css">
-<link rel="stylesheet" href="css/common.css">
-<link rel="stylesheet" href="css/dashboard-common.css">
-<link rel="stylesheet" href="css/hosts-files.css">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>uMatrix — Hosts files</title>
+	<link rel="stylesheet" href="css/fa-icons.css">
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/dashboard-common.css">
+	<link rel="stylesheet" href="css/hosts-files.css">
 </head>
-
 <body>
-<div class="body">
+	<div class="body">
 
-<p>
-    <button id="buttonApply" class="custom important reloadAll disabled" data-i18n="hostsFilesApplyChanges"></button>
-    <button id="buttonUpdate" class="custom important reloadAll disabled" data-i18n="hostsFilesUpdateNow"></button>
-    <button id="buttonPurgeAll" class="custom disabled" data-i18n="hostsFilesPurgeAll"></button>
-</p>
-<ul id="options">
-    <li><input type="checkbox" id="autoUpdate"><label data-i18n="hostsFilesAutoUpdatePrompt" for="autoUpdate"></label>
-</ul>
-<div class="assets">
-    <div data-i18n="assetsHostsSection"></div>
-    <div>
-        <p><span data-i18n="hostsFilesPrompt"></span>&nbsp;<a class="fa-icon info" href="https://github.com/gorhill/uMatrix/wiki/Preset-whitelisted-and-blacklisted-domains#preset-blacklist-rules" target="_blank">info-circle</a></p>
-        <p id="listsOfBlockedHostsPrompt"></p>
-        <ul id="hosts">
-            <li class="listEntry notAnAsset toImport"><input type="checkbox" id="importHosts"><label for="importHosts" data-i18n="assetsImportLabel"></label><!--
-                --><textarea dir="ltr" spellcheck="false" placeholder="hostsFilesExternalListsHint"></textarea>
-        </ul>
-    </div>
-</div>
+		<p>
+			<button id="buttonApply" class="custom important reloadAll disabled"
+				data-i18n="hostsFilesApplyChanges"></button>
+			<button id="buttonUpdate" class="custom important reloadAll disabled"
+				data-i18n="hostsFilesUpdateNow"></button>
+			<button id="buttonPurgeAll" class="custom disabled" data-i18n="hostsFilesPurgeAll"></button>
+		</p>
+		<ul id="options">
+			<li><input type="checkbox" id="autoUpdate"><label data-i18n="hostsFilesAutoUpdatePrompt"
+					for="autoUpdate"></label>
+		</ul>
+		<div class="assets">
+			<div data-i18n="assetsHostsSection"></div>
+			<div>
+				<p><span data-i18n="hostsFilesPrompt"></span>&nbsp;<a class="fa-icon info"
+						href="https://github.com/gorhill/uMatrix/wiki/Preset-whitelisted-and-blacklisted-domains#preset-blacklist-rules"
+						target="_blank">info-circle</a></p>
+				<p id="listsOfBlockedHostsPrompt"></p>
+				<ul id="hosts">
+					<li class="listEntry notAnAsset toImport"><input type="checkbox" id="importHosts"><label
+							for="importHosts" data-i18n="assetsImportLabel"></label><!--
+				--><textarea dir="ltr" spellcheck="false" placeholder="hostsFilesExternalListsHint"></textarea>
+				</ul>
+			</div>
+		</div>
 
-<div class="assets">
-    <div data-i18n="assetsRecipesSection"></div>
-    <div>
-        <p><span data-i18n="assetsRecipesSummary"></span>&nbsp;<a class="fa-icon info" href="https://github.com/gorhill/uMatrix/wiki/Ruleset-recipes" target="_blank">info-circle</a></p>
-        <ul id="recipes">
-            <li class="listEntry notAnAsset toImport"><input type="checkbox" id="importRecipes"><label for="importRecipes" data-i18n="assetsImportLabel"></label><!--
-                --><textarea dir="ltr" spellcheck="false" placeholder="hostsFilesExternalListsHint"></textarea>
-            <li class="listEntry notAnAsset toInline"><input type="checkbox" id="inlineRecipes"><label for="inlineRecipes" data-i18n="assetsInlineRecipesLabel"></label><!--
-                --><textarea dir="ltr" spellcheck="false" placeholder="assetsInlineRecipesHint"></textarea>
-        </ul>
-    </div>
-</div>
+		<div class="assets">
+			<div data-i18n="assetsRecipesSection"></div>
+			<div>
+				<p><span data-i18n="assetsRecipesSummary"></span>&nbsp;<a class="fa-icon info"
+						href="https://github.com/gorhill/uMatrix/wiki/Ruleset-recipes" target="_blank">info-circle</a>
+				</p>
+				<ul id="recipes">
+					<li class="listEntry notAnAsset toImport"><input type="checkbox" id="importRecipes"><label
+							for="importRecipes" data-i18n="assetsImportLabel"></label><!--
+				--><textarea dir="ltr" spellcheck="false" placeholder="hostsFilesExternalListsHint"></textarea>
+					<li class="listEntry notAnAsset toInline"><input type="checkbox" id="inlineRecipes"><label
+							for="inlineRecipes" data-i18n="assetsInlineRecipesLabel"></label><!--
+				--><textarea dir="ltr" spellcheck="false" placeholder="assetsInlineRecipesHint"></textarea>
+				</ul>
+			</div>
+		</div>
 
-<div id="templates" style="display: none;">
-    <ul>
-        <li class="listEntry">
-            <input type="checkbox"><!--
-         --><a class="content" type="text/plain" target="_blank" href=""></a>&#8203;<!--
-         --><a class="fa-icon support" href="" target="_blank">home</a>&#8203;<!--
-         --><span class="fa-icon remove" href="">trash-o</span>&#8203;<!--
-         --><a class="fa-icon mustread" href="" target="_blank">info-circle</a>&#8203;<!--
-         --><span class="fa-icon status unsecure" title="http">unlock</span>&#8203;<!--
-         --><span class="counts dim status"></span>&#8203;<!--
-         --><span class="fa-icon status obsolete" data-i18n-title="hostsFilesExternalListObsolete">exclamation-triangle</span>&#8203;<!--
-         --><span class="fa-icon status cache">clock</span>&#8203;<!--
-         --><span class="fa-icon status updating">spinner</span>&#8203;<!--
-         --><span class="fa-icon status failed">unlink</span>
-            </li>
-    </ul>
-</div>
+		<div id="templates" style="display: none;">
+			<ul>
+				<li class="listEntry">
+					<input type="checkbox"><!--
+		 --><a class="content" type="text/plain" target="_blank" href=""></a>&#8203;<!--
+		 --><a class="fa-icon support" href="" target="_blank">home</a>&#8203;<!--
+		 --><span class="fa-icon remove" href="">trash-o</span>&#8203;<!--
+		 --><a class="fa-icon mustread" href="" target="_blank">info-circle</a>&#8203;<!--
+		 --><span class="fa-icon status unsecure" title="http">unlock</span>&#8203;<!--
+		 --><span class="counts dim status"></span>&#8203;<!--
+		 --><span class="fa-icon status obsolete"
+						data-i18n-title="hostsFilesExternalListObsolete">exclamation-triangle</span>&#8203;<!--
+		 --><span class="fa-icon status cache">clock</span>&#8203;<!--
+		 --><span class="fa-icon status updating">spinner</span>&#8203;<!--
+		 --><span class="fa-icon status failed">unlink</span>
+				</li>
+			</ul>
+		</div>
 
-</div><!-- end of div.body -->
+	</div><!-- end of div.body -->
 
-<script src="js/fa-icons.js"></script>
-<script src="js/vapi.js"></script>
-<script src="js/vapi-common.js"></script>
-<script src="js/vapi-client.js"></script>
-<script src="js/vapi-client-extra.js"></script>
-<script src="js/udom.js"></script>
-<script src="js/i18n.js"></script>
-<script src="js/dashboard-common.js"></script>
-<script src="js/hosts-files.js"></script>
+	<script src="js/fa-icons.js"></script>
+	<script src="js/vapi.js"></script>
+	<script src="js/vapi-common.js"></script>
+	<script src="js/vapi-client.js"></script>
+	<script src="js/vapi-client-extra.js"></script>
+	<script src="js/udom.js"></script>
+	<script src="js/i18n.js"></script>
+	<script src="js/dashboard-common.js"></script>
+	<script src="js/hosts-files.js"></script>
 
 </body>
 </html>
-

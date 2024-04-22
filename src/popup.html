@@ -2,130 +2,462 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/fa-icons.css">
-<link rel="stylesheet" href="css/common.css">
-<link rel="stylesheet" href="css/scope-selector.css">
-<link rel="stylesheet" href="css/popup.css">
-<title>uMatrix panel</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/fa-icons.css">
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/scope-selector.css">
+	<link rel="stylesheet" href="css/popup.css">
+	<title>uMatrix panel</title>
 </head>
-
 <body>
+	<div class="paneHead">
+		<div id="gotoDashboard" data-extension-url="dashboard.html" data-i18n-tip="matrixDashboardMenuEntry">uMatrix
+			<span id="version"> </span>
+		</div>
+		<div id="toolbarContainer">
+			<div class="toolbar">
+				<span class="scope" id="specificScope"><span>&nbsp;</span></span><!--
+		 --><span class="scope tip-anchor-center" id="globalScope" data-scope="*"
+					data-i18n-tip="matrixGlobalScopeTip"><span><span>&#x2217;</span></span></span>
+				<span id="mtxSwitch_matrix-off" class="fa-icon fa-icon-badged scopeRel tip-anchor-center"
+					data-i18n-tip="matrixMtxButtonTip">power-off</span>
+				<span id="buttonMtxSwitches" class="fa-icon fa-icon-badged scopeRel" tabindex="-1"
+					data-dropdown-menu="dropDownMenuSwitches">ellipsis-v</span>
+				<span id="buttonRecipes" class="fa-icon fa-icon-badged scopeRel" data-i18n-tip="matrixRecipesButtonTip"
+					data-dropdown-menu="dropDownMenuRecipes">puzzle-piece</span>
+				<span id="buttonPersist" class="fa-icon fa-icon-badged scopeRel tip-anchor-center"
+					data-i18n-tip="matrixPersistButtonTip">lock</span>
+				<span id="buttonRevertScope" class="fa-icon fa-icon-badged scopeRel tip-anchor-center"
+					data-i18n-tip="matrixRevertButtonTip">reply</span>
+			</div>
+			<div class="toolbar needtab">
+				<span id="buttonReload" class="fa-icon tip-anchor-right"
+					data-i18n-tip="matrixReloadButton">refresh</span>
+			</div>
+			<div class="toolbar">
+				<span id="buttonRevertAll" class="fa-icon tip-anchor-right needtab"
+					data-i18n-tip="matrixRevertAllEntry">reply-all</span>
+				<span class="fa-icon tip-anchor-right" data-extension-url="logger-ui.html#_"
+					data-i18n-tip="matrixLoggerMenuEntry">list-alt</span>
+			</div>
+		</div>
+		<div id="matHead" class="matrix collapsible">
+			<div class="matRow rw" style="display:none">
+				<div class="matCell" data-req-type="all">all</div>
+				<div class="matCell" data-req-type="cookie">cookie</div>
+				<div class="matCell" data-req-type="css">css</div>
+				<div class="matCell" data-req-type="image">img</div>
+				<div class="matCell" data-req-type="media">media</div>
+				<div class="matCell" data-req-type="script">script</div>
+				<div class="matCell" data-req-type="fetch">fetch</div>
+				<div class="matCell" data-req-type="frame">frame</div>
+				<div class="matCell" data-req-type="other">other</div>
+			</div>
+		</div>
+	</div>
 
-<div class="paneHead">
-    <div id="gotoDashboard" data-extension-url="dashboard.html" data-i18n-tip="matrixDashboardMenuEntry">uMatrix <span id="version"> </span></div>
-    <div id="toolbarContainer">
-        <div class="toolbar">
-            <span class="scope" id="specificScope"><span>&nbsp;</span></span><!--
-         --><span class="scope tip-anchor-center" id="globalScope" data-scope="*" data-i18n-tip="matrixGlobalScopeTip"><span><span>&#x2217;</span></span></span>
-            <span id="mtxSwitch_matrix-off" class="fa-icon fa-icon-badged scopeRel tip-anchor-center" data-i18n-tip="matrixMtxButtonTip">power-off</span>
-            <span id="buttonMtxSwitches" class="fa-icon fa-icon-badged scopeRel" tabindex="-1" data-dropdown-menu="dropDownMenuSwitches">ellipsis-v</span>
-            <span id="buttonRecipes" class="fa-icon fa-icon-badged scopeRel" data-i18n-tip="matrixRecipesButtonTip" data-dropdown-menu="dropDownMenuRecipes">puzzle-piece</span>
-            <span id="buttonPersist" class="fa-icon fa-icon-badged scopeRel tip-anchor-center" data-i18n-tip="matrixPersistButtonTip">lock</span>
-            <span id="buttonRevertScope" class="fa-icon fa-icon-badged scopeRel tip-anchor-center" data-i18n-tip="matrixRevertButtonTip">reply</span>
-            </div>
-        <div class="toolbar needtab">
-            <span id="buttonReload" class="fa-icon tip-anchor-right" data-i18n-tip="matrixReloadButton">refresh</span>
-            </div>
-        <div class="toolbar">
-            <span id="buttonRevertAll" class="fa-icon tip-anchor-right needtab" data-i18n-tip="matrixRevertAllEntry">reply-all</span>
-            <span class="fa-icon tip-anchor-right" data-extension-url="logger-ui.html#_"  data-i18n-tip="matrixLoggerMenuEntry">list-alt</span>
-            </div>
-    </div>
-    <div id="matHead" class="matrix collapsible">
-        <div class="matRow rw" style="display:none"><div class="matCell" data-req-type="all">all</div><div class="matCell" data-req-type="cookie">cookie</div><div class="matCell" data-req-type="css">css</div><div class="matCell" data-req-type="image">img</div><div class="matCell" data-req-type="media">media</div><div class="matCell" data-req-type="script">script</div><div class="matCell" data-req-type="fetch">fetch</div><div class="matCell" data-req-type="frame">frame</div><div class="matCell" data-req-type="other">other</div></div>
-    </div>
-</div>
+	<div class="paneContent">
+		<div id="matList" class="matrix" style="display:none">
+			<!-- the spaces are important: they ensure text nodes in the DOM -->
+			<div class="matRow">
+				<div class="matCell"><b> </b> </div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+			</div>
+			<div class="matRow">
+				<div class="matCell"><b> </b> </div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+			</div>
+			<div class="matRow">
+				<div class="matCell"><b> </b> </div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+			</div>
+			<div class="matRow">
+				<div class="matCell"><b> </b> </div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+			</div>
+			<div class="matRow">
+				<div class="matCell"><b> </b> </div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+			</div>
+			<div class="matRow">
+				<div class="matCell"><b> </b> </div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+			</div>
+			<div class="matRow">
+				<div class="matCell"><b> </b> </div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+			</div>
+			<div class="matRow">
+				<div class="matCell"><b> </b> </div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+			</div>
+			<div class="matRow">
+				<div class="matCell"><b> </b> </div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+			</div>
+			<div class="matRow">
+				<div class="matCell"><b> </b> </div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+			</div>
+			<div class="matRow">
+				<div class="matCell"><b> </b> </div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+			</div>
+			<div class="matRow">
+				<div class="matCell"><b> </b> </div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+			</div>
+			<div class="matRow">
+				<div class="matCell"><b> </b> </div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+			</div>
+			<div class="matRow">
+				<div class="matCell"><b> </b> </div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+			</div>
+			<div class="matRow">
+				<div class="matCell"><b> </b> </div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+			</div>
+			<div class="matRow">
+				<div class="matCell"><b> </b> </div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+			</div>
+			<div class="matRow">
+				<div class="matCell"><b> </b> </div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+			</div>
+			<div class="matRow">
+				<div class="matCell"><b> </b> </div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+			</div>
+			<div class="matRow">
+				<div class="matCell"><b> </b> </div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+			</div>
+			<div class="matRow">
+				<div class="matCell"><b> </b> </div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+				<div class="matCell">&nbsp;</div>
+			</div>
+		</div>
+		<div id="noNetTrafficPrompt" style="display:none;text-align:center;font-size:large"></div>
+	</div>
 
-<div class="paneContent">
-    <div id="matList" class="matrix" style="display:none">
-        <!-- the spaces are important: they ensure text nodes in the DOM -->
-        <div class="matRow"><div class="matCell"><b> </b> </div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div></div>
-        <div class="matRow"><div class="matCell"><b> </b> </div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div></div>
-        <div class="matRow"><div class="matCell"><b> </b> </div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div></div>
-        <div class="matRow"><div class="matCell"><b> </b> </div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div></div>
-        <div class="matRow"><div class="matCell"><b> </b> </div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div></div>
-        <div class="matRow"><div class="matCell"><b> </b> </div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div></div>
-        <div class="matRow"><div class="matCell"><b> </b> </div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div></div>
-        <div class="matRow"><div class="matCell"><b> </b> </div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div></div>
-        <div class="matRow"><div class="matCell"><b> </b> </div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div></div>
-        <div class="matRow"><div class="matCell"><b> </b> </div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div></div>
-        <div class="matRow"><div class="matCell"><b> </b> </div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div></div>
-        <div class="matRow"><div class="matCell"><b> </b> </div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div></div>
-        <div class="matRow"><div class="matCell"><b> </b> </div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div></div>
-        <div class="matRow"><div class="matCell"><b> </b> </div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div></div>
-        <div class="matRow"><div class="matCell"><b> </b> </div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div></div>
-        <div class="matRow"><div class="matCell"><b> </b> </div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div></div>
-        <div class="matRow"><div class="matCell"><b> </b> </div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div></div>
-        <div class="matRow"><div class="matCell"><b> </b> </div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div></div>
-        <div class="matRow"><div class="matCell"><b> </b> </div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div></div>
-        <div class="matRow"><div class="matCell"><b> </b> </div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div></div>
-    </div>
-    <div id="noNetTrafficPrompt" style="display:none;text-align:center;font-size:large"></div>
-</div>
+	<div id="dropDownMenuSwitches" class="dropdown-menu-capture">
+		<div class="dropdown-menu">
+			<ul id="mtxSwitches">
+				<li id="mtxSwitch_https-strict" class="dropdown-menu-entry exists">
+					<!-- <svg><use xlink:href="#toggleButton" /></svg> --><svg xmlns="http://www.w3.org/2000/svg"
+						version="1.1" viewBox="0 0 152 96">
+						<g>
+							<ellipse cx="48" cy="48" rx="24" ry="24" />
+							<ellipse cx="104" cy="48" rx="24" ry="24" />
+							<rect width="56" height="48" x="48" y="24" />
+						</g>
+						<g class="off">
+							<ellipse cx="48" cy="48" rx="48" ry="48" />
+							<ellipse style="fill:#fff;" cx="48" cy="48" rx="40" ry="40" />
+							<ellipse class="dot" cx="48" cy="48" rx="12" ry="12" />
+						</g>
+						<g class="on">
+							<ellipse style="fill:#444;" cx="104" cy="48" rx="48" ry="48" />
+							<ellipse class="dot" cx="104" cy="48" rx="12" ry="12" />
+						</g>
+					</svg><span data-i18n="matrixSwitchNoMixedContent"></span>&emsp;<a class="fa-icon"
+						href="https://developer.mozilla.org/docs/Web/Security/Mixed_content"
+						target="_blank">info-circle</a>
+				<li id="mtxSwitch_no-workers" class="dropdown-menu-entry exists">
+					<!-- <svg><use xlink:href="#toggleButton" /></svg> --><svg xmlns="http://www.w3.org/2000/svg"
+						version="1.1" viewBox="0 0 152 96">
+						<g>
+							<ellipse cx="48" cy="48" rx="24" ry="24" />
+							<ellipse cx="104" cy="48" rx="24" ry="24" />
+							<rect width="56" height="48" x="48" y="24" />
+						</g>
+						<g class="off">
+							<ellipse cx="48" cy="48" rx="48" ry="48" />
+							<ellipse style="fill:#fff;" cx="48" cy="48" rx="40" ry="40" />
+							<ellipse class="dot" cx="48" cy="48" rx="12" ry="12" />
+						</g>
+						<g class="on">
+							<ellipse style="fill:#444;" cx="104" cy="48" rx="48" ry="48" />
+							<ellipse class="dot" cx="104" cy="48" rx="12" ry="12" />
+						</g>
+					</svg><span data-i18n="matrixSwitchNoWorker"></span>&emsp;<a class="fa-icon"
+						href="https://developer.mozilla.org/docs/Web/API/Web_Workers_API"
+						target="_blank">info-circle</a>
+				<li id="mtxSwitch_referrer-spoof" class="dropdown-menu-entry">
+					<!-- <svg><use xlink:href="#toggleButton" /></svg> --><svg xmlns="http://www.w3.org/2000/svg"
+						version="1.1" viewBox="0 0 152 96">
+						<g>
+							<ellipse cx="48" cy="48" rx="24" ry="24" />
+							<ellipse cx="104" cy="48" rx="24" ry="24" />
+							<rect width="56" height="48" x="48" y="24" />
+						</g>
+						<g class="off">
+							<ellipse cx="48" cy="48" rx="48" ry="48" />
+							<ellipse style="fill:#fff;" cx="48" cy="48" rx="40" ry="40" />
+							<ellipse class="dot" cx="48" cy="48" rx="12" ry="12" />
+						</g>
+						<g class="on">
+							<ellipse style="fill:#444;" cx="104" cy="48" rx="48" ry="48" />
+							<ellipse class="dot" cx="104" cy="48" rx="12" ry="12" />
+						</g>
+					</svg><span data-i18n="matrixSwitchReferrerSpoof"></span>&emsp;<a class="fa-icon"
+						href="https://developer.mozilla.org/docs/Web/HTTP/Headers/Referer"
+						target="_blank">info-circle</a>
+				<li id="mtxSwitch_noscript-spoof" class="dropdown-menu-entry">
+					<!-- <svg><use xlink:href="#toggleButton" /></svg> --><svg xmlns="http://www.w3.org/2000/svg"
+						version="1.1" viewBox="0 0 152 96">
+						<g>
+							<ellipse cx="48" cy="48" rx="24" ry="24" />
+							<ellipse cx="104" cy="48" rx="24" ry="24" />
+							<rect width="56" height="48" x="48" y="24" />
+						</g>
+						<g class="off">
+							<ellipse cx="48" cy="48" rx="48" ry="48" />
+							<ellipse style="fill:#fff;" cx="48" cy="48" rx="40" ry="40" />
+							<ellipse class="dot" cx="48" cy="48" rx="12" ry="12" />
+						</g>
+						<g class="on">
+							<ellipse style="fill:#444;" cx="104" cy="48" rx="48" ry="48" />
+							<ellipse class="dot" cx="104" cy="48" rx="12" ry="12" />
+						</g>
+					</svg><span data-i18n="matrixSwitchNoscriptSpoof"></span>&emsp;<a class="fa-icon"
+						href="https://developer.mozilla.org/docs/Web/HTML/Element/noscript"
+						target="_blank">info-circle</a>
+				<li id="mtxSwitch_cname-reveal" class="dropdown-menu-entry">
+					<!-- <svg><use xlink:href="#toggleButton" /></svg> --><svg xmlns="http://www.w3.org/2000/svg"
+						version="1.1" viewBox="0 0 152 96">
+						<g>
+							<ellipse cx="48" cy="48" rx="24" ry="24" />
+							<ellipse cx="104" cy="48" rx="24" ry="24" />
+							<rect width="56" height="48" x="48" y="24" />
+						</g>
+						<g class="off">
+							<ellipse cx="48" cy="48" rx="48" ry="48" />
+							<ellipse style="fill:#fff;" cx="48" cy="48" rx="40" ry="40" />
+							<ellipse class="dot" cx="48" cy="48" rx="12" ry="12" />
+						</g>
+						<g class="on">
+							<ellipse style="fill:#444;" cx="104" cy="48" rx="48" ry="48" />
+							<ellipse class="dot" cx="104" cy="48" rx="12" ry="12" />
+						</g>
+					</svg><span data-i18n="matrixSwitchRevealCname"></span>&emsp;<a class="fa-icon"
+						href="https://wikipedia.org/wiki/CNAME_record" target="_blank">info-circle</a>
+			</ul>
+		</div>
+	</div>
 
-<div id="dropDownMenuSwitches" class="dropdown-menu-capture">
-    <div class="dropdown-menu">
-        <ul id="mtxSwitches">
-            <li id="mtxSwitch_https-strict" class="dropdown-menu-entry exists"><!-- <svg><use xlink:href="#toggleButton" /></svg> --><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 152 96"><g><ellipse cx="48" cy="48" rx="24" ry="24" /><ellipse cx="104" cy="48" rx="24" ry="24" /><rect width="56" height="48" x="48" y="24" /></g><g class="off"><ellipse cx="48" cy="48" rx="48" ry="48" /><ellipse style="fill:#fff;" cx="48" cy="48" rx="40" ry="40" /><ellipse class="dot" cx="48" cy="48" rx="12" ry="12" /></g><g class="on"><ellipse style="fill:#444;" cx="104" cy="48" rx="48" ry="48" /><ellipse class="dot" cx="104" cy="48" rx="12" ry="12" /></g></svg><span data-i18n="matrixSwitchNoMixedContent"></span>&emsp;<a class="fa-icon" href="https://developer.mozilla.org/docs/Web/Security/Mixed_content" target="_blank">info-circle</a>
-            <li id="mtxSwitch_no-workers" class="dropdown-menu-entry exists"><!-- <svg><use xlink:href="#toggleButton" /></svg> --><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 152 96"><g><ellipse cx="48" cy="48" rx="24" ry="24" /><ellipse cx="104" cy="48" rx="24" ry="24" /><rect width="56" height="48" x="48" y="24" /></g><g class="off"><ellipse cx="48" cy="48" rx="48" ry="48" /><ellipse style="fill:#fff;" cx="48" cy="48" rx="40" ry="40" /><ellipse class="dot" cx="48" cy="48" rx="12" ry="12" /></g><g class="on"><ellipse style="fill:#444;" cx="104" cy="48" rx="48" ry="48" /><ellipse class="dot" cx="104" cy="48" rx="12" ry="12" /></g></svg><span data-i18n="matrixSwitchNoWorker"></span>&emsp;<a class="fa-icon" href="https://developer.mozilla.org/docs/Web/API/Web_Workers_API" target="_blank">info-circle</a>
-            <li id="mtxSwitch_referrer-spoof" class="dropdown-menu-entry"><!-- <svg><use xlink:href="#toggleButton" /></svg> --><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 152 96"><g><ellipse cx="48" cy="48" rx="24" ry="24" /><ellipse cx="104" cy="48" rx="24" ry="24" /><rect width="56" height="48" x="48" y="24" /></g><g class="off"><ellipse cx="48" cy="48" rx="48" ry="48" /><ellipse style="fill:#fff;" cx="48" cy="48" rx="40" ry="40" /><ellipse class="dot" cx="48" cy="48" rx="12" ry="12" /></g><g class="on"><ellipse style="fill:#444;" cx="104" cy="48" rx="48" ry="48" /><ellipse class="dot" cx="104" cy="48" rx="12" ry="12" /></g></svg><span data-i18n="matrixSwitchReferrerSpoof"></span>&emsp;<a class="fa-icon" href="https://developer.mozilla.org/docs/Web/HTTP/Headers/Referer" target="_blank">info-circle</a>
-            <li id="mtxSwitch_noscript-spoof" class="dropdown-menu-entry"><!-- <svg><use xlink:href="#toggleButton" /></svg> --><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 152 96"><g><ellipse cx="48" cy="48" rx="24" ry="24" /><ellipse cx="104" cy="48" rx="24" ry="24" /><rect width="56" height="48" x="48" y="24" /></g><g class="off"><ellipse cx="48" cy="48" rx="48" ry="48" /><ellipse style="fill:#fff;" cx="48" cy="48" rx="40" ry="40" /><ellipse class="dot" cx="48" cy="48" rx="12" ry="12" /></g><g class="on"><ellipse style="fill:#444;" cx="104" cy="48" rx="48" ry="48" /><ellipse class="dot" cx="104" cy="48" rx="12" ry="12" /></g></svg><span data-i18n="matrixSwitchNoscriptSpoof"></span>&emsp;<a class="fa-icon" href="https://developer.mozilla.org/docs/Web/HTML/Element/noscript" target="_blank">info-circle</a>
-            <li id="mtxSwitch_cname-reveal" class="dropdown-menu-entry"><!-- <svg><use xlink:href="#toggleButton" /></svg> --><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 152 96"><g><ellipse cx="48" cy="48" rx="24" ry="24" /><ellipse cx="104" cy="48" rx="24" ry="24" /><rect width="56" height="48" x="48" y="24" /></g><g class="off"><ellipse cx="48" cy="48" rx="48" ry="48" /><ellipse style="fill:#fff;" cx="48" cy="48" rx="40" ry="40" /><ellipse class="dot" cx="48" cy="48" rx="12" ry="12" /></g><g class="on"><ellipse style="fill:#444;" cx="104" cy="48" rx="48" ry="48" /><ellipse class="dot" cx="104" cy="48" rx="12" ry="12" /></g></svg><span data-i18n="matrixSwitchRevealCname"></span>&emsp;<a class="fa-icon" href="https://wikipedia.org/wiki/CNAME_record" target="_blank">info-circle</a>
-        </ul>
-    </div>
-</div>
+	<div id="dropDownMenuRecipes" class="dropdown-menu-capture dropdown-menu-centered">
+		<div class="dropdown-menu">
+			<ul></ul>
+		</div>
+	</div>
 
-<div id="dropDownMenuRecipes" class="dropdown-menu-capture dropdown-menu-centered">
-    <div class="dropdown-menu">
-        <ul></ul>
-    </div>
-</div>
+	<div id="noTabFound"></div>
 
-<div id="noTabFound"></div>
+	<!-- Convenient to auto-fetch locale strings used in scripts -->
+	<div style="display: none;">
+		<span data-i18n="matrixBlacklistedHostnames"></span>
+		<span data-i18n="matrix1stPartyLabel"></span>
+	</div>
 
-<!-- Convenient to auto-fetch locale strings used in scripts -->
-<div style="display: none;">
-    <span data-i18n="matrixBlacklistedHostnames"></span>
-    <span data-i18n="matrix1stPartyLabel"></span>
-</div>
+	<div style="clear: both; height: 0px;"></div>
 
-<div style="clear: both; height: 0px;"></div>
+	<div id="templates" style="display:none">
+		<div class="groupSeparator"></div>
+		<div class="domainSeparator"></div>
+		<div class="matRow">
+			<div class="matCell"><b> </b> </div>
+			<div class="matCell">&nbsp;</div>
+			<div class="matCell">&nbsp;</div>
+			<div class="matCell">&nbsp;</div>
+			<div class="matCell">&nbsp;</div>
+			<div class="matCell">&nbsp;</div>
+			<div class="matCell">&nbsp;</div>
+			<div class="matCell">&nbsp;</div>
+			<div class="matCell">&nbsp;</div>
+		</div>
+		<div id="cellHotspots">
+			<div id="whitelist"></div>
+			<div id="blacklist"></div>
+			<div id="domainOnly" class="fa-icon">angle-up</div>
+		</div>
+		<!-- Use once min supported browser version allows for use of CSS variables
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+		<symbol id="toggleButton" viewBox="0 0 152 96">
+		  <g>
+			<path d="m 48,24 a 24,24 0 0 0 -24,24 24,24 0 0 0 24,24 l 48,0 A 24,24 0 0 0 120,48 24,24 0 0 0 96,24 l -48,0 z" style="opacity:1;fill:#bbb;fill-opacity:1;stroke:none;" />
+			<g style="display:var(--off);">
+			  <ellipse style="fill:#bbb;fill-opacity:1;stroke:none;" cx="48" cy="48" rx="48" ry="48" />
+			  <ellipse style="opacity:1;fill:#fff;fill-opacity:1;stroke:none;" cx="48" cy="48" rx="40" ry="40" />
+			  <ellipse style="display:var(--dot);fill:#bbb;fill-opacity:1;stroke:none;" cx="48" cy="48" rx="12" ry="12" /></g>
+			<g style="display:var(--on);">
+			  <ellipse style="opacity:1;fill:#444;fill-opacity:1;stroke:none;" cx="104" cy="48" rx="48" ry="48" />
+			  <ellipse style="display:var(--dot);fill:#bbb;fill-opacity:1;stroke:none;" cx="104" cy="48" rx="12" ry="12" /></g>
+		  </g>
+		</symbol>
+	</svg>
+	-->
+		<li class="recipe">
+			<div><span class="expander"></span><span class="name"></span><span class="fa-icon committer"
+					title="matrixRecipeSaveTip">lock</span><span class="fa-icon importer"
+					title="matrixRecipeImportTip">download</span></div>
+			<div class="ruleset"></div>
+		</li>
+	</div>
 
-<div id="templates" style="display:none">
-    <div class="groupSeparator"></div>
-    <div class="domainSeparator"></div>
-    <div class="matRow"><div class="matCell"><b> </b> </div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div><div class="matCell">&nbsp;</div></div>
-    <div id="cellHotspots"><div id="whitelist"></div><div id="blacklist"></div><div id="domainOnly" class="fa-icon">angle-up</div></div>
-    <!-- Use once min supported browser version allows for use of CSS variables
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-        <symbol id="toggleButton" viewBox="0 0 152 96">
-          <g>
-            <path d="m 48,24 a 24,24 0 0 0 -24,24 24,24 0 0 0 24,24 l 48,0 A 24,24 0 0 0 120,48 24,24 0 0 0 96,24 l -48,0 z" style="opacity:1;fill:#bbb;fill-opacity:1;stroke:none;" />
-            <g style="display:var(--off);">
-              <ellipse style="fill:#bbb;fill-opacity:1;stroke:none;" cx="48" cy="48" rx="48" ry="48" />
-              <ellipse style="opacity:1;fill:#fff;fill-opacity:1;stroke:none;" cx="48" cy="48" rx="40" ry="40" />
-              <ellipse style="display:var(--dot);fill:#bbb;fill-opacity:1;stroke:none;" cx="48" cy="48" rx="12" ry="12" /></g>
-            <g style="display:var(--on);">
-              <ellipse style="opacity:1;fill:#444;fill-opacity:1;stroke:none;" cx="104" cy="48" rx="48" ry="48" />
-              <ellipse style="display:var(--dot);fill:#bbb;fill-opacity:1;stroke:none;" cx="104" cy="48" rx="12" ry="12" /></g>
-          </g>
-        </symbol>
-    </svg>
-    -->
-    <li class="recipe"><div><span class="expander"></span><span class="name"></span><span class="fa-icon committer" title="matrixRecipeSaveTip">lock</span><span class="fa-icon importer" title="matrixRecipeImportTip">download</span></div><div class="ruleset"></div></li>
-</div>
-
-<script src="js/fa-icons.js"></script>
-<script src="lib/punycode.js"></script>
-<script src="js/vapi.js"></script>
-<script src="js/vapi-common.js"></script>
-<script src="js/vapi-client.js"></script>
-<script src="js/udom.js"></script>
-<script src="js/i18n.js"></script>
-<script src="js/scope-selector.js"></script>
-<script src="js/popup.js"></script>
+	<script src="js/fa-icons.js"></script>
+	<script src="lib/punycode.js"></script>
+	<script src="js/vapi.js"></script>
+	<script src="js/vapi-common.js"></script>
+	<script src="js/vapi-client.js"></script>
+	<script src="js/udom.js"></script>
+	<script src="js/i18n.js"></script>
+	<script src="js/scope-selector.js"></script>
+	<script src="js/popup.js"></script>
 </body>
 
 </html>

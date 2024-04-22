@@ -1,44 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title></title>
-<link rel="stylesheet" href="css/fa-icons.css">
-<link rel="stylesheet" href="css/common.css">
-<link rel="stylesheet" href="css/main-blocked.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<link rel="stylesheet" href="css/fa-icons.css">
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/main-blocked.css">
 </head>
 <body>
-<div id="warningSign"><span class="fa-icon">exclamation-triangle</span></div>
-<div>
-    <p data-i18n="mainBlockedPrompt1"></p>
-    <div id="theURL" class="collapsed">
-        <p>
-            <span class="what code"></span>
-            <span class="fa-icon expand">search-plus</span>
-            <span class="fa-icon collapse">search-minus</span>
-        </p>
-        <ul id="parsed"></ul>
-        </div>
-    </div>
+	<div id="warningSign"><span class="fa-icon">exclamation-triangle</span></div>
+	<div>
+		<p data-i18n="mainBlockedPrompt1"></p>
+		<div id="theURL" class="collapsed">
+			<p>
+				<span class="what code"></span>
+				<span class="fa-icon expand">search-plus</span>
+				<span class="fa-icon collapse">search-minus</span>
+			</p>
+			<ul id="parsed"></ul>
+		</div>
+	</div>
 
-<!-- <div>
-    <p data-i18n="mainBlockedPrompt2"></p>
-    <p id="why" class="code"></p>
-    </div>
-    -->
+	<!-- <div>
+	<p data-i18n="mainBlockedPrompt2"></p>
+	<p id="why" class="code"></p>
+	</div>
+	-->
 
-<div>
-    <p><button id="back" data-i18n="mainBlockedBack" type="button"></button>
-    <button id="bye" data-i18n="mainBlockedClose" type="button"></button></p>
-    </div>
+	<div>
+		<p><button id="back" data-i18n="mainBlockedBack" type="button"></button>
+			<button id="bye" data-i18n="mainBlockedClose" type="button"></button>
+		</p>
+	</div>
 
-<script src="js/fa-icons.js"></script>
-<script src="js/vapi.js"></script>
-<script src="js/vapi-common.js"></script>
-<script src="js/vapi-client.js"></script>
-<script src="js/udom.js"></script>
-<script src="js/i18n.js"></script>
-<script src="js/main-blocked.js"></script>
+	<script src="js/fa-icons.js"></script>
+	<script src="js/vapi.js"></script>
+	<script src="js/vapi-common.js"></script>
+	<script src="js/vapi-client.js"></script>
+	<script src="js/udom.js"></script>
+	<script src="js/i18n.js"></script>
+	<script src="js/main-blocked.js"></script>
 </body>
 </html>
