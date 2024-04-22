@@ -87,14 +87,10 @@ body[dir="rtl"] #pageSelector
 	fill: #000;
 }
 
-/*
-	https://github.com/gorhill/uBlock/issues/3293
-	=> https://devhints.io/css-system-font-stack
-*/
 #inspectors
 {
 	flex-grow: 1;
-	font-family: "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+	font-family: sans-serif;
 }
 
 .inspector

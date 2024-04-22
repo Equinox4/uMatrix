@@ -3,7 +3,7 @@ body
 	background-color: white;
 	border: 0;
 	float: left;
-	font: 14px httpsb, sans-serif;
+	font: 14px sans-serif;
 	margin: 0;
 	min-height: 16em;
 	min-width: 32em;
@@ -499,20 +499,11 @@ body.tabless .needtab
 	direction: inherit;
 }
 
-.matrix .matRow.l2 > .matCell:first-child
-{}
-
-.matrix .matRow > .matCell:hover
-{}
-
 .matrix .matGroup .matSection
 {
 	border: 0;
 	padding: 0;
 }
-
-.matrix .matGroup .matSection:hover
-{}
 
 .matrix .matGroup.g0 .matSection:first-child
 {
