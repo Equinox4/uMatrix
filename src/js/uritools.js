@@ -1,284 +1,232 @@
-/*******************************************************************************
-
-    uMatrix - a browser extension to black/white list requests.
-    Copyright (C) 2014-2018 Raymond Hill
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see {http://www.gnu.org/licenses/}.
-
-    Home: https://github.com/gorhill/uMatrix
-*/
-
 'use strict';
 
-/*******************************************************************************
 
+/*
 RFC 3986 as reference: http://tools.ietf.org/html/rfc3986#appendix-A
-
 Naming convention from https://en.wikipedia.org/wiki/URI_scheme#Examples
-
 */
 
-/******************************************************************************/
+µMatrix.URI = (() => {
 
-µMatrix.URI = (( ) => {
+	// Favorite regex tool: http://regex101.com/
 
-/******************************************************************************/
+	// Ref: <http://tools.ietf.org/html/rfc3986#page-50>
+	// I removed redundant capture groups: capture less = peform faster. See
+	// <http://jsperf.com/old-uritools-vs-new-uritools>
+	// Performance improvements welcomed.
+	// jsperf: <http://jsperf.com/old-uritools-vs-new-uritools>
+	const reRFC3986 = /^([^:/?#]+:)?(\/\/[^/?#]*)?([^?#]*)(\?[^#]*)?(#.*)?/;
 
-// Favorite regex tool: http://regex101.com/
+	// Derived
+	const reSchemeFromURI = /^[a-z][0-9a-z+.-]+:/;
+	const reOriginFromURI = /^(?:[^:/?#]+:)\/\/[^/?#]+/;
 
-// Ref: <http://tools.ietf.org/html/rfc3986#page-50>
-// I removed redundant capture groups: capture less = peform faster. See
-// <http://jsperf.com/old-uritools-vs-new-uritools>
-// Performance improvements welcomed.
-// jsperf: <http://jsperf.com/old-uritools-vs-new-uritools>
-const reRFC3986 = /^([^:\/?#]+:)?(\/\/[^\/?#]*)?([^?#]*)(\?[^#]*)?(#.*)?/;
+	// These are to parse authority field, not parsed by above official regex
+	// IPv6 is seen as an exception: a non-compatible IPv6 is first tried, and
+	// if it fails, the IPv6 compatible regex istr used. This helps
+	// peformance by avoiding the use of a too complicated regex first.
 
-// Derived
-const reSchemeFromURI = /^[a-z][0-9a-z+.-]+:/;
-const reOriginFromURI = /^(?:[^:\/?#]+:)\/\/[^\/?#]+/;
+	// https://github.com/gorhill/httpswitchboard/issues/211
+	// "While a hostname may not contain other characters, such as the
+	// "underscore character (_), other DNS names may contain the underscore"
+	const reHostPortFromAuthority = /^(?:[^@]*@)?([^:]*)(:\d*)?$/;
+	const reIPv6PortFromAuthority = /^(?:[^@]*@)?(\[[0-9a-f:]*\])(:\d*)?$/i;
 
-// These are to parse authority field, not parsed by above official regex
-// IPv6 is seen as an exception: a non-compatible IPv6 is first tried, and
-// if it fails, the IPv6 compatible regex istr used. This helps
-// peformance by avoiding the use of a too complicated regex first.
+	const reHostFromNakedAuthority = /^[0-9a-z._-]+[0-9a-z]$/i;
 
-// https://github.com/gorhill/httpswitchboard/issues/211
-// "While a hostname may not contain other characters, such as the
-// "underscore character (_), other DNS names may contain the underscore"
-const reHostPortFromAuthority  = /^(?:[^@]*@)?([^:]*)(:\d*)?$/;
-const reIPv6PortFromAuthority  = /^(?:[^@]*@)?(\[[0-9a-f:]*\])(:\d*)?$/i;
+	// Accurate tests
+	// Source.: http://stackoverflow.com/questions/5284147/validating-ipv4-addresses-with-regexp/5284410#5284410
+	//var reIPv4                   = /^((25[0-5]|2[0-4]\d|[01]?\d\d?)(\.|$)){4}/;
 
-const reHostFromNakedAuthority = /^[0-9a-z._-]+[0-9a-z]$/i;
+	// Source: http://forums.intermapper.com/viewtopic.php?p=1096#1096
+	//var reIPv6                   = /^\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*$/;
 
-// Accurate tests
-// Source.: http://stackoverflow.com/questions/5284147/validating-ipv4-addresses-with-regexp/5284410#5284410
-//var reIPv4                   = /^((25[0-5]|2[0-4]\d|[01]?\d\d?)(\.|$)){4}/;
+	/******************************************************************************/
 
-// Source: http://forums.intermapper.com/viewtopic.php?p=1096#1096
-//var reIPv6                   = /^\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*$/;
+	const reset = function (o) {
+		o.scheme = '';
+		o.hostname = '';
+		o._ipv4 = undefined;
+		o._ipv6 = undefined;
+		o.port = '';
+		o.path = '';
+		o.query = '';
+		o.fragment = '';
+		return o;
+	};
 
-/******************************************************************************/
+	const resetAuthority = function (o) {
+		o.hostname = '';
+		o._ipv4 = undefined;
+		o._ipv6 = undefined;
+		o.port = '';
+		return o;
+	};
 
-const reset = function(o) {
-    o.scheme = '';
-    o.hostname = '';
-    o._ipv4 = undefined;
-    o._ipv6 = undefined;
-    o.port = '';
-    o.path = '';
-    o.query = '';
-    o.fragment = '';
-    return o;
-};
+	// This will be exported
 
-const resetAuthority = function(o) {
-    o.hostname = '';
-    o._ipv4 = undefined;
-    o._ipv6 = undefined;
-    o.port = '';
-    return o;
-};
+	const URI = {
+		scheme: '',
+		authority: '',
+		hostname: '',
+		_ipv4: undefined,
+		_ipv6: undefined,
+		port: '',
+		domain: undefined,
+		path: '',
+		query: '',
+		fragment: '',
+		schemeBit: (1 << 0),
+		userBit: (1 << 1),
+		passwordBit: (1 << 2),
+		hostnameBit: (1 << 3),
+		portBit: (1 << 4),
+		pathBit: (1 << 5),
+		queryBit: (1 << 6),
+		fragmentBit: (1 << 7),
+		allBits: (0xFFFF)
+	};
 
-/******************************************************************************/
+	URI.authorityBit = (URI.userBit | URI.passwordBit | URI.hostnameBit | URI.portBit);
+	URI.normalizeBits = (URI.schemeBit | URI.hostnameBit | URI.pathBit | URI.queryBit);
 
-// This will be exported
+	// See: https://en.wikipedia.org/wiki/URI_scheme#Examples
+	//     URI = scheme ":" hier-part [ "?" query ] [ "#" fragment ]
+	//
+	//       foo://example.com:8042/over/there?name=ferret#nose
+	//       \_/   \______________/\_________/ \_________/ \__/
+	//        |           |            |            |        |
+	//     scheme     authority       path        query   fragment
+	//        |   _____________________|__
+	//       / \ /                        \
+	//       urn:example:animal:ferret:nose
 
-const URI = {
-    scheme:      '',
-    authority:   '',
-    hostname:    '',
-    _ipv4:       undefined,
-    _ipv6:       undefined,
-    port:        '',
-    domain:      undefined,
-    path:        '',
-    query:       '',
-    fragment:    '',
-    schemeBit:   (1 << 0),
-    userBit:     (1 << 1),
-    passwordBit: (1 << 2),
-    hostnameBit: (1 << 3),
-    portBit:     (1 << 4),
-    pathBit:     (1 << 5),
-    queryBit:    (1 << 6),
-    fragmentBit: (1 << 7),
-    allBits:     (0xFFFF)
-};
+	URI.set = function (uri) {
+		if (uri === undefined) {
+			return reset(URI);
+		}
+		let matches = reRFC3986.exec(uri);
+		if (!matches) {
+			return reset(URI);
+		}
+		this.scheme = matches[1] !== undefined ? matches[1].slice(0, -1) : '';
+		this.authority = matches[2] !== undefined ? matches[2].slice(2).toLowerCase() : '';
+		this.path = matches[3] !== undefined ? matches[3] : '';
 
-URI.authorityBit  = (URI.userBit | URI.passwordBit | URI.hostnameBit | URI.portBit);
-URI.normalizeBits = (URI.schemeBit | URI.hostnameBit | URI.pathBit | URI.queryBit);
+		// <http://tools.ietf.org/html/rfc3986#section-6.2.3>
+		// "In general, a URI that uses the generic syntax for authority
+		// "with an empty path should be normalized to a path of '/'."
+		if (this.authority !== '' && this.path === '') {
+			this.path = '/';
+		}
+		this.query = matches[4] !== undefined ? matches[4].slice(1) : '';
+		this.fragment = matches[5] !== undefined ? matches[5].slice(1) : '';
 
-/******************************************************************************/
+		// Assume very simple authority, i.e. just a hostname (highest likelihood
+		// case for µMatrix)
+		if (reHostFromNakedAuthority.test(this.authority)) {
+			this.hostname = this.authority;
+			this.port = '';
+			return this;
+		}
+		// Authority contains more than just a hostname
+		matches = reHostPortFromAuthority.exec(this.authority);
+		if (!matches) {
+			matches = reIPv6PortFromAuthority.exec(this.authority);
+			if (!matches) {
+				return resetAuthority(URI);
+			}
+		}
+		this.hostname = matches[1] !== undefined ? matches[1] : '';
+		// http://en.wikipedia.org/wiki/FQDN
+		if (this.hostname.endsWith('.')) {
+			this.hostname = this.hostname.slice(0, -1);
+		}
+		this.port = matches[2] !== undefined ? matches[2].slice(1) : '';
+		return this;
+	};
 
-// See: https://en.wikipedia.org/wiki/URI_scheme#Examples
-//     URI = scheme ":" hier-part [ "?" query ] [ "#" fragment ]
-//
-//       foo://example.com:8042/over/there?name=ferret#nose
-//       \_/   \______________/\_________/ \_________/ \__/
-//        |           |            |            |        |
-//     scheme     authority       path        query   fragment
-//        |   _____________________|__
-//       / \ /                        \
-//       urn:example:animal:ferret:nose
+	/*
+		URI = scheme ":" hier-part [ "?" query ] [ "#" fragment ]
+	
+		  foo://example.com:8042/over/there?name=ferret#nose
+		  \_/   \______________/\_________/ \_________/ \__/
+		   |           |            |            |        |
+		scheme     authority       path        query   fragment
+		   |   _____________________|__
+		  / \ /                        \
+		  urn:example:animal:ferret:nose
+	*/
 
-URI.set = function(uri) {
-    if ( uri === undefined ) {
-        return reset(URI);
-    }
-    var matches = reRFC3986.exec(uri);
-    if ( !matches ) {
-        return reset(URI);
-    }
-    this.scheme = matches[1] !== undefined ? matches[1].slice(0, -1) : '';
-    this.authority = matches[2] !== undefined ? matches[2].slice(2).toLowerCase() : '';
-    this.path = matches[3] !== undefined ? matches[3] : '';
+	URI.assemble = function (bits) {
+		if (bits === undefined) {
+			bits = this.allBits;
+		}
+		let s = [];
+		if (this.scheme && (bits & this.schemeBit)) {
+			s.push(this.scheme, ':');
+		}
+		if (this.hostname && (bits & this.hostnameBit)) {
+			s.push('//', this.hostname);
+		}
+		if (this.port && (bits & this.portBit)) {
+			s.push(':', this.port);
+		}
+		if (this.path && (bits & this.pathBit)) {
+			s.push(this.path);
+		}
+		if (this.query && (bits & this.queryBit)) {
+			s.push('?', this.query);
+		}
+		if (this.fragment && (bits & this.fragmentBit)) {
+			s.push('#', this.fragment);
+		}
+		return s.join('');
+	};
 
-    // <http://tools.ietf.org/html/rfc3986#section-6.2.3>
-    // "In general, a URI that uses the generic syntax for authority
-    // "with an empty path should be normalized to a path of '/'."
-    if ( this.authority !== '' && this.path === '' ) {
-        this.path = '/';
-    }
-    this.query = matches[4] !== undefined ? matches[4].slice(1) : '';
-    this.fragment = matches[5] !== undefined ? matches[5].slice(1) : '';
+	URI.originFromURI = function (uri) {
+		const matches = reOriginFromURI.exec(uri);
+		return matches !== null ? matches[0].toLowerCase() : '';
+	};
 
-    // Assume very simple authority, i.e. just a hostname (highest likelihood
-    // case for µMatrix)
-    if ( reHostFromNakedAuthority.test(this.authority) ) {
-        this.hostname = this.authority;
-        this.port = '';
-        return this;
-    }
-    // Authority contains more than just a hostname
-    matches = reHostPortFromAuthority.exec(this.authority);
-    if ( !matches ) {
-        matches = reIPv6PortFromAuthority.exec(this.authority);
-        if ( !matches ) {
-            return resetAuthority(URI);
-        }
-    }
-    this.hostname = matches[1] !== undefined ? matches[1] : '';
-    // http://en.wikipedia.org/wiki/FQDN
-    if ( this.hostname.slice(-1) === '.' ) {
-        this.hostname = this.hostname.slice(0, -1);
-    }
-    this.port = matches[2] !== undefined ? matches[2].slice(1) : '';
-    return this;
-};
+	URI.schemeFromURI = function (uri) {
+		const matches = reSchemeFromURI.exec(uri);
+		if (matches === null) { return ''; }
+		return matches[0].slice(0, -1).toLowerCase();
+	};
 
-/******************************************************************************/
+	const reNetworkScheme = /^(?:https?|wss?|ftps?)\b/;
 
-//     URI = scheme ":" hier-part [ "?" query ] [ "#" fragment ]
-//
-//       foo://example.com:8042/over/there?name=ferret#nose
-//       \_/   \______________/\_________/ \_________/ \__/
-//        |           |            |            |        |
-//     scheme     authority       path        query   fragment
-//        |   _____________________|__
-//       / \ /                        \
-//       urn:example:animal:ferret:nose
+	URI.isNetworkScheme = function (scheme) {
+		return reNetworkScheme.test(scheme);
+	};
 
-URI.assemble = function(bits) {
-    if ( bits === undefined ) {
-        bits = this.allBits;
-    }
-    var s = [];
-    if ( this.scheme && (bits & this.schemeBit) ) {
-        s.push(this.scheme, ':');
-    }
-    if ( this.hostname && (bits & this.hostnameBit) ) {
-        s.push('//', this.hostname);
-    }
-    if ( this.port && (bits & this.portBit) ) {
-        s.push(':', this.port);
-    }
-    if ( this.path && (bits & this.pathBit) ) {
-        s.push(this.path);
-    }
-    if ( this.query && (bits & this.queryBit) ) {
-        s.push('?', this.query);
-    }
-    if ( this.fragment && (bits & this.fragmentBit) ) {
-        s.push('#', this.fragment);
-    }
-    return s.join('');
-};
+	const reSecureScheme = /^(?:http|ws|ftp)s\b/;
 
-/******************************************************************************/
+	URI.isSecureScheme = function (scheme) {
+		return reSecureScheme.test(scheme);
+	};
 
-URI.originFromURI = function(uri) {
-    const matches = reOriginFromURI.exec(uri);
-    return matches !== null ? matches[0].toLowerCase() : '';
-};
+	URI.hostnameFromURI = vAPI.hostnameFromURI;
+	URI.domainFromHostname = vAPI.domainFromHostname;
+	URI.domainFromURI = vAPI.domainFromURI;
 
-/******************************************************************************/
+	// Normalize the way µMatrix expects it
 
-URI.schemeFromURI = function(uri) {
-    const matches = reSchemeFromURI.exec(uri);
-    if ( matches === null ) { return ''; }
-    return matches[0].slice(0, -1).toLowerCase();
-};
+	URI.normalizedURI = function () {
+		// Will be removed:
+		// - port
+		// - user id/password
+		// - fragment
+		return this.assemble(this.normalizeBits);
+	};
 
-/******************************************************************************/
+	URI.toString = function () {
+		return this.assemble();
+	};
 
-const reNetworkScheme = /^(?:https?|wss?|ftps?)\b/;
+	// Export
 
-URI.isNetworkScheme = function(scheme) {
-    return reNetworkScheme.test(scheme);
-};
-
-/******************************************************************************/
-
-const reSecureScheme = /^(?:http|ws|ftp)s\b/;
-
-URI.isSecureScheme = function(scheme) {
-    return reSecureScheme.test(scheme);
-};
-
-/******************************************************************************/
-
-URI.hostnameFromURI = vAPI.hostnameFromURI;
-URI.domainFromHostname = vAPI.domainFromHostname;
-URI.domainFromURI = vAPI.domainFromURI;
-
-/******************************************************************************/
-
-// Normalize the way µMatrix expects it
-
-URI.normalizedURI = function() {
-    // Will be removed:
-    // - port
-    // - user id/password
-    // - fragment
-    return this.assemble(this.normalizeBits);
-};
-
-/******************************************************************************/
-
-URI.toString = function() {
-    return this.assemble();
-};
-
-/******************************************************************************/
-
-// Export
-
-return URI;
-
-/******************************************************************************/
+	return URI;
 
 })();
-
-/******************************************************************************/
-
